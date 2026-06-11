@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free mould treatment price calculator | Mould Mates</title>
+<meta name="description" content="See what mould treatment costs for your home in about 60 seconds. Free and obligation free, no contact details needed. Brisbane, Gold Coast and Northern Rivers.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free mould treatment price calculator | Mould Mates">
+<meta property="og:description" content="See what mould treatment costs for your home in about 60 seconds. Free and obligation free, no contact details needed. Brisbane, Gold Coast and Northern Rivers.">
+<meta property="og:site_name" content="Mould Mates">
+<!-- Add og:image once hosted, e.g. <meta property="og:image" content="https://YOUR-GITHUB-PAGES-URL/preview.png"> -->
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#2c3345">
+<style>
+  body{margin:0;background:#f5f5f5;padding:24px 24px 60px;min-height:100vh;}
+  .mm-pagefoot{max-width:720px;margin:40px auto 0;text-align:center;font-size:12px;color:#8c8c8c;line-height:1.8;font-family:'JetBrains Mono',monospace;letter-spacing:0.5px;border-top:1px solid #e1e5eb;padding-top:24px;}
+  .mm-pagefoot a{color:#54c0da;text-decoration:none;}
+  .mm-pagefoot a:hover{text-decoration:underline;}
+  .mm-pagefoot strong{color:#2c3345;font-weight:600;}
+</style>
+</head>
+<body>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  #mmcalc{
+    --bg:#f5f5f5; --bg-card:#ffffff; --bg-soft:#ebeef2; --border:#e1e5eb; --border-strong:#c6ccd6;
+    --ink:#2c3345; --ink-soft:#4d4d4d; --dim:#8c8c8c;
+    --teal:#54c0da; --teal-bright:#03c7fe; --teal-deep:#2c3345;
+    --teal-soft:rgba(84,192,218,0.10); --teal-glow:rgba(84,192,218,0.35);
+    --shadow-sm:0 1px 3px rgba(44,51,69,0.06); --shadow-md:0 4px 14px rgba(44,51,69,0.10); --shadow-lg:0 12px 36px rgba(44,51,69,0.16);
+    font-family:'Inter',system-ui,sans-serif;
+    max-width:720px;margin:0 auto;color:var(--ink);line-height:1.55;
+    -webkit-font-smoothing:antialiased;box-sizing:border-box;
+  }
+  #mmcalc *,#mmcalc *::before,#mmcalc *::after{box-sizing:border-box;margin:0;padding:0;}
+
+  /* Header row + progress */
+  #mmcalc .mm-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 4px;}
+  #mmcalc .mm-brand{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.3px;display:flex;align-items:center;gap:8px;}
+  #mmcalc .mm-brand-mark{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--teal-bright) 0%,var(--teal) 100%);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-family:'Inter',sans-serif;font-weight:800;font-size:12px;box-shadow:0 2px 8px var(--teal-glow);}
+  #mmcalc .mm-counter{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:0.5px;}
+  #mmcalc .mm-progress{height:3px;background:var(--border);width:100%;overflow:hidden;border-radius:2px;margin-bottom:34px;}
+  #mmcalc .mm-progress-fill{height:100%;background:linear-gradient(90deg,var(--teal) 0%,var(--teal-bright) 100%);width:0%;transition:width .45s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px var(--teal-glow);}
+
+  /* Screens */
+  #mmcalc .mm-screen{display:none;animation:mmFadeIn .45s cubic-bezier(.4,0,.2,1);}
+  #mmcalc .mm-screen.active{display:block;}
+  @keyframes mmFadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+  /* Intro */
+  #mmcalc .mm-intro-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);padding:6px 14px;border:1px solid var(--teal-glow);border-radius:999px;margin-bottom:24px;background:var(--teal-soft);}
+  #mmcalc .mm-intro-title{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,6vw,54px);line-height:1.05;color:var(--ink);margin-bottom:20px;letter-spacing:-1px;}
+  #mmcalc .mm-intro-title em{font-style:italic;color:var(--teal);font-weight:500;}
+  #mmcalc .mm-intro-sub{font-size:17px;line-height:1.6;color:var(--ink-soft);margin-bottom:32px;max-width:580px;}
+  #mmcalc .mm-intro-meta{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:36px;padding:18px 22px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-sm);}
+  #mmcalc .mm-intro-meta-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);font-weight:500;}
+  #mmcalc .mm-intro-meta-item .mm-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px var(--teal-glow);flex:0 0 auto;}
+
+  /* Questions */
+  #mmcalc .mm-qnum{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;font-weight:500;}
+  #mmcalc .mm-qtitle{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,4vw,32px);line-height:1.2;color:var(--ink);margin-bottom:14px;letter-spacing:-0.5px;}
+  #mmcalc .mm-qcontext{font-size:14px;line-height:1.6;color:var(--ink-soft);margin-bottom:28px;padding-left:14px;border-left:3px solid var(--teal-glow);}
+  #mmcalc .mm-answers{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+  #mmcalc button.mm-answer{display:flex;align-items:center;gap:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;cursor:pointer;transition:all .15s;text-align:left;font-family:inherit;font-size:15px;color:var(--ink);width:100%;box-shadow:var(--shadow-sm);}
+  #mmcalc button.mm-answer:hover{border-color:var(--teal-glow);transform:translateX(3px);box-shadow:var(--shadow-md);}
+  #mmcalc button.mm-answer.selected{border-color:var(--teal);background:var(--teal-soft);box-shadow:0 0 0 3px var(--teal-glow);}
+  #mmcalc .mm-answer-mark{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--border-strong);flex-shrink:0;position:relative;transition:all .15s;}
+  #mmcalc button.mm-answer.selected .mm-answer-mark{border-color:var(--teal);background:var(--teal);}
+  #mmcalc button.mm-answer.selected .mm-answer-mark::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:8px;height:8px;border-radius:50%;background:#fff;}
+  #mmcalc .mm-answer-text{flex:1;font-weight:500;}
+  #mmcalc .mm-answer-text small{display:block;font-weight:400;font-size:12.5px;color:var(--dim);margin-top:2px;line-height:1.45;}
+
+  /* Chips (gross count) */
+  #mmcalc .mm-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;}
+  #mmcalc button.mm-chip{min-width:52px;padding:14px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-family:inherit;font-size:15px;font-weight:500;color:var(--ink);box-shadow:var(--shadow-sm);transition:all .15s;}
+  #mmcalc button.mm-chip:hover{border-color:var(--teal-glow);box-shadow:var(--shadow-md);}
+  #mmcalc button.mm-chip.selected{border-color:var(--teal);background:var(--teal-soft);box-shadow:0 0 0 3px var(--teal-glow);}
+
+  /* Stepper (extra rooms) */
+  #mmcalc .mm-stepper{display:flex;align-items:center;gap:22px;justify-content:center;margin-bottom:28px;padding:22px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-sm);}
+  #mmcalc .mm-stepper button{width:48px;height:48px;border-radius:50%;border:1px solid var(--border-strong);background:var(--bg-card);font-size:22px;color:var(--ink);cursor:pointer;font-family:inherit;line-height:1;transition:all .15s;}
+  #mmcalc .mm-stepper button:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-soft);}
+  #mmcalc .mm-stepper .mm-count{font-family:'Fraunces',serif;font-size:36px;font-weight:600;color:var(--ink);min-width:52px;text-align:center;}
+
+  /* Inputs */
+  #mmcalc input.mm-input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:inherit;font-size:15px;color:var(--ink);transition:all .15s;box-shadow:var(--shadow-sm);}
+  #mmcalc input.mm-input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-glow);}
+  #mmcalc .mm-err{color:#dc2626;font-size:13px;margin-top:10px;display:none;}
+
+  /* Controls */
+  #mmcalc .mm-controls{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:4px;}
+  #mmcalc .mm-btn-primary{display:inline-flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-weight:600;font-size:15px;background:var(--ink);color:#fff;border:none;cursor:pointer;padding:16px 30px;border-radius:10px;transition:all .2s;box-shadow:0 6px 20px rgba(44,51,69,0.25);text-decoration:none;}
+  #mmcalc .mm-btn-primary:hover{background:#1d2230;transform:translateY(-2px);box-shadow:0 10px 28px rgba(44,51,69,0.32);}
+  #mmcalc .mm-btn-primary .mm-arrow{transition:transform .2s;}
+  #mmcalc .mm-btn-primary:hover .mm-arrow{transform:translateX(3px);}
+  #mmcalc .mm-btn-secondary{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;color:var(--ink-soft);border:1px solid var(--border-strong);cursor:pointer;padding:10px 18px;border-radius:8px;transition:all .2s;text-decoration:none;}
+  #mmcalc .mm-btn-secondary:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-soft);}
+
+  /* Result */
+  #mmcalc .mm-result-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:18px;background:var(--teal-soft);color:var(--teal);border:1px solid var(--teal-glow);}
+  #mmcalc .mm-result-tag.mod{background:rgba(217,119,6,0.12);color:#d97706;border:1px solid rgba(217,119,6,0.3);}
+  #mmcalc .mm-result-title{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,5vw,40px);line-height:1.15;color:var(--ink);margin-bottom:18px;letter-spacing:-0.5px;}
+  #mmcalc .mm-score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:24px;padding:20px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-sm);}
+  #mmcalc .mm-score-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);width:100%;}
+  #mmcalc .mm-score-value{font-family:'Fraunces',serif;font-size:clamp(30px,5vw,40px);line-height:1;color:var(--teal);font-weight:600;}
+  #mmcalc .mm-score-to{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);}
+  #mmcalc .mm-score-note{font-size:13px;color:var(--ink-soft);width:100%;margin-top:6px;line-height:1.5;}
+  #mmcalc .mm-callout{padding:20px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;margin-bottom:16px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm);}
+  #mmcalc .mm-callout::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--teal);}
+  #mmcalc .mm-callout-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;font-weight:500;}
+  #mmcalc .mm-callout p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);}
+  #mmcalc .mm-callout p b{color:var(--ink);font-weight:600;}
+  #mmcalc .mm-disclaimer{font-size:12.5px;color:var(--dim);margin:18px 2px 28px;line-height:1.6;}
+
+  /* CTA card */
+  #mmcalc .mm-cta-card{background:linear-gradient(135deg,#2c3345 0%,#3a4660 100%);border-radius:16px;padding:32px;margin-bottom:18px;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);}
+  #mmcalc .mm-cta-card::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(84,192,218,0.30) 0%,transparent 70%);pointer-events:none;}
+  #mmcalc .mm-cta-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;position:relative;z-index:1;font-weight:500;}
+  #mmcalc .mm-cta-title{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(22px,3.5vw,28px);line-height:1.2;color:#fff;margin-bottom:12px;position:relative;z-index:1;letter-spacing:-0.3px;}
+  #mmcalc .mm-cta-desc{font-size:14.5px;line-height:1.65;color:rgba(255,255,255,0.85);margin-bottom:22px;position:relative;z-index:1;}
+  #mmcalc .mm-cta-actions{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1;}
+  #mmcalc a.mm-cta-call{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;background:var(--teal);color:var(--ink);border:none;cursor:pointer;padding:16px 26px;border-radius:10px;text-decoration:none;box-shadow:0 8px 24px rgba(84,192,218,0.35);transition:all .2s;}
+  #mmcalc a.mm-cta-call:hover{background:var(--teal-bright);color:#fff;box-shadow:0 12px 32px rgba(3,199,254,0.45);transform:translateY(-2px);}
+  #mmcalc button.mm-cta-quote{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;color:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.35);cursor:pointer;padding:14px 20px;border-radius:8px;transition:all .2s;}
+  #mmcalc button.mm-cta-quote:hover{border-color:var(--teal);color:var(--teal);background:rgba(84,192,218,0.12);}
+  #mmcalc .mm-cta-meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;font-size:12px;color:rgba(255,255,255,0.78);position:relative;z-index:1;}
+  #mmcalc .mm-cta-meta span{display:inline-flex;align-items:center;gap:6px;}
+  #mmcalc .mm-cta-meta span::before{content:'\2713';color:var(--teal);font-weight:700;}
+
+  /* Quote form */
+  #mmcalc .mm-form{display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow-sm);}
+  #mmcalc .mm-form label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin:16px 0 7px;font-weight:500;}
+  #mmcalc .mm-form label:first-child{margin-top:0;}
+  #mmcalc .mm-form .mm-controls{margin-top:22px;justify-content:flex-end;}
+  #mmcalc .mm-success{display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;}
+  #mmcalc .mm-success::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:#16a34a;}
+  #mmcalc .mm-success b{color:var(--ink);}
+  #mmcalc .mm-success p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);}
+  #mmcalc button.mm-restart{background:none;border:none;color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:6px 2px;text-decoration:underline;text-underline-offset:3px;}
+  #mmcalc button.mm-restart:hover{color:var(--teal);}
+
+  @media (max-width:540px){
+    #mmcalc .mm-controls{flex-direction:column-reverse;align-items:stretch;}
+    #mmcalc .mm-controls .mm-btn-primary{justify-content:center;}
+    #mmcalc .mm-controls .mm-btn-secondary{justify-content:center;}
+    #mmcalc .mm-cta-card{padding:24px;}
+    #mmcalc .mm-cta-actions{flex-direction:column;align-items:stretch;}
+    #mmcalc .mm-cta-actions a.mm-cta-call{justify-content:center;}
+    #mmcalc .mm-cta-actions button.mm-cta-quote{justify-content:center;}
+  }
+</style>
+
+<div id="mmcalc">
+  <div class="mm-topbar">
+    <div class="mm-brand"><span class="mm-brand-mark">M</span> Mould Mates</div>
+    <div class="mm-counter" id="mm-counter"></div>
+  </div>
+  <div class="mm-progress"><div class="mm-progress-fill" id="mm-progress-fill"></div></div>
+
+  <!-- Intro -->
+  <div class="mm-screen" data-step="0">
+    <span class="mm-intro-tag">Free price calculator</span>
+    <h1 class="mm-intro-title">What does mould treatment <em>actually</em> cost?</h1>
+    <p class="mm-intro-sub">Answer six quick questions and see an estimate range for your home, on the spot. No strings attached, no obligation, and no contact details needed to see your price.</p>
+    <div class="mm-intro-meta">
+      <div class="mm-intro-meta-item"><span class="mm-dot"></span> 6 quick questions</div>
+      <div class="mm-intro-meta-item"><span class="mm-dot"></span> About 60 seconds</div>
+      <div class="mm-intro-meta-item"><span class="mm-dot"></span> Instant estimate range</div>
+      <div class="mm-intro-meta-item"><span class="mm-dot"></span> No contact details needed</div>
+    </div>
+    <button type="button" class="mm-btn-primary" id="mm-start">Start the calculator <span class="mm-arrow">&rarr;</span></button>
+  </div>
+
+  <!-- Q1: property type -->
+  <div class="mm-screen" data-step="1">
+    <p class="mm-qnum">Question 1 of 6</p>
+    <h2 class="mm-qtitle">What type of property is it?</h2>
+    <p class="mm-qcontext">A standard apartment is 2 bedrooms. A standard single storey home is 3 bedrooms. A standard double storey home is 4 bedrooms. Each includes a bathroom, ensuite, living room, dining room, kitchen and laundry.</p>
+    <div class="mm-answers" role="radiogroup" aria-label="Property type">
+      <button type="button" class="mm-answer" data-prop="apartment"><span class="mm-answer-mark"></span><span class="mm-answer-text">Apartment<small>Standard 2 bedroom apartment</small></span></button>
+      <button type="button" class="mm-answer" data-prop="single"><span class="mm-answer-mark"></span><span class="mm-answer-text">Single storey home<small>Standard 3 bedroom home</small></span></button>
+      <button type="button" class="mm-answer" data-prop="double"><span class="mm-answer-mark"></span><span class="mm-answer-text">Double storey home<small>Standard 4 bedroom home</small></span></button>
+    </div>
+  </div>
+
+  <!-- Q2: extra rooms -->
+  <div class="mm-screen" data-step="2">
+    <p class="mm-qnum">Question 2 of 6</p>
+    <h2 class="mm-qtitle">How many extra rooms beyond the standard set?</h2>
+    <p class="mm-qcontext" id="mm-extras-context">Count any rooms beyond the standard set. Any room type counts: extra bedrooms, an office, media room, gym, rumpus, second living area or extra bathrooms. Choose 0 if your home matches the standard set.</p>
+    <div class="mm-stepper">
+      <button type="button" id="mm-minus" aria-label="Fewer rooms">&minus;</button>
+      <div class="mm-count" id="mm-extras-count">0</div>
+      <button type="button" id="mm-plus" aria-label="More rooms">+</button>
+    </div>
+    <div class="mm-controls">
+      <button type="button" class="mm-btn-secondary" data-goto="1">&larr; Back</button>
+      <button type="button" class="mm-btn-primary" data-goto="3">Next <span class="mm-arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- Q3: situation -->
+  <div class="mm-screen" data-step="3">
+    <p class="mm-qnum">Question 3 of 6</p>
+    <h2 class="mm-qtitle">Which best describes what you are seeing?</h2>
+    <p class="mm-qcontext">Mould is a climate problem, not a hygiene problem. Pick whichever fits best.</p>
+    <div class="mm-answers" role="radiogroup" aria-label="Situation">
+      <button type="button" class="mm-answer" data-sit="some"><span class="mm-answer-mark"></span><span class="mm-answer-text">Visible mould in one or a few rooms<small>Spots or patches in places like the bathroom, a wardrobe or on window frames</small></span></button>
+      <button type="button" class="mm-answer" data-sit="atmo"><span class="mm-answer-mark"></span><span class="mm-answer-text">Visible mould through the whole home<small>Mould showing in all or nearly all rooms</small></span></button>
+      <button type="button" class="mm-answer" data-sit="musty"><span class="mm-answer-mark"></span><span class="mm-answer-text">A musty smell but no visible mould<small>You can smell it but cannot find it</small></span></button>
+    </div>
+    <div class="mm-controls">
+      <button type="button" class="mm-btn-secondary" data-goto="2">&larr; Back</button>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- Q4: colonised rooms -->
+  <div class="mm-screen" data-step="4">
+    <p class="mm-qnum">Question 4 of 6</p>
+    <h2 class="mm-qtitle">In how many rooms is the mould colonised on 3 or more surfaces?</h2>
+    <p class="mm-qcontext">Colonised means patches of mould close together. Surfaces are the ceiling, each wall, window frames and fixtures like the shower. Example: a bathroom with mould on the ceiling, a wall and in the shower counts as one room.</p>
+    <div class="mm-chips" role="radiogroup" aria-label="Rooms with colonised mould on 3 or more surfaces">
+      <button type="button" class="mm-chip" data-gross="0">0</button>
+      <button type="button" class="mm-chip" data-gross="1">1</button>
+      <button type="button" class="mm-chip" data-gross="2">2</button>
+      <button type="button" class="mm-chip" data-gross="3">3</button>
+      <button type="button" class="mm-chip" data-gross="4">4</button>
+      <button type="button" class="mm-chip" data-gross="5">5</button>
+      <button type="button" class="mm-chip" data-gross="6">More than 5</button>
+    </div>
+    <div class="mm-controls">
+      <button type="button" class="mm-btn-secondary" data-goto="3">&larr; Back</button>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- Q5: confirmed leak -->
+  <div class="mm-screen" data-step="5">
+    <p class="mm-qnum">Question 5 of 6</p>
+    <h2 class="mm-qtitle">Has the mould come from a confirmed leak?</h2>
+    <p class="mm-qcontext">Any water ingress counts: a roof leak, a tap or pipe leak, a leaking dishwasher or washing machine, an overflowing bathtub, or flooding of any kind.</p>
+    <div class="mm-answers" role="radiogroup" aria-label="Confirmed leak">
+      <button type="button" class="mm-answer" data-leak="yes"><span class="mm-answer-mark"></span><span class="mm-answer-text">Yes, there is or was a confirmed leak</span></button>
+      <button type="button" class="mm-answer" data-leak="no"><span class="mm-answer-mark"></span><span class="mm-answer-text">No, or not sure</span></button>
+    </div>
+    <div class="mm-controls">
+      <button type="button" class="mm-btn-secondary" id="mm-back-from-leak">&larr; Back</button>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- Q6: suburb -->
+  <div class="mm-screen" data-step="6">
+    <p class="mm-qnum">Question 6 of 6</p>
+    <h2 class="mm-qtitle">Which suburb is the property in?</h2>
+    <p class="mm-qcontext">We service Brisbane, Gold Coast and Northern Rivers. We ask this to see if a travel charge would apply.</p>
+    <input type="text" class="mm-input" id="mm-suburb" placeholder="e.g. Palm Beach" autocomplete="off">
+    <p class="mm-err" id="mm-suburb-err">Please enter your suburb so we can check your area.</p>
+    <div class="mm-controls" style="margin-top:28px;">
+      <button type="button" class="mm-btn-secondary" id="mm-back-from-suburb">&larr; Back</button>
+      <button type="button" class="mm-btn-primary" id="mm-see-estimate">See my estimate <span class="mm-arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="mm-screen" data-step="7">
+    <div id="mm-result"></div>
+    <div class="mm-cta-card">
+      <p class="mm-cta-label">Want an exact quote?</p>
+      <h3 class="mm-cta-title">We confirm it with a quick call</h3>
+      <p class="mm-cta-desc">Send us your details and we will call you to talk through the job and confirm an exact quote. We also offer mould management plans to keep mould under control on a set schedule, and we send a preventative plan when treatment is complete.</p>
+      <div class="mm-cta-actions">
+        <a class="mm-cta-call" href="tel:0435219425">Call us on 0435 219 425</a>
+        <button type="button" class="mm-cta-quote" id="mm-show-form">Request an exact quote</button>
+      </div>
+      <div class="mm-cta-meta">
+        <span>Free quote within 24 hours</span>
+        <span>IICRC certified firm</span>
+        <span>Obligation free</span>
+      </div>
+    </div>
+    <div class="mm-form" id="mm-form">
+      <label for="mm-name">Full name</label>
+      <input type="text" class="mm-input" id="mm-name" autocomplete="name">
+      <label for="mm-phone">Phone number</label>
+      <input type="tel" class="mm-input" id="mm-phone" autocomplete="tel">
+      <label for="mm-email">Email address</label>
+      <input type="email" class="mm-input" id="mm-email" autocomplete="email">
+      <p class="mm-err" id="mm-form-err">Please check your name, phone and email and try again.</p>
+      <div class="mm-controls">
+        <button type="button" class="mm-btn-primary" id="mm-submit">Send my quote request <span class="mm-arrow">&rarr;</span></button>
+      </div>
+    </div>
+    <div class="mm-success" id="mm-success"></div>
+    <button type="button" class="mm-restart" id="mm-restart">Start again</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('mmcalc');
+  if(!root) return;
+
+  var WEBHOOK = 'https://services.leadconnectorhq.com/hooks/nIVRTn1y71wQ3dAgraqE/webhook-trigger/29e763cf-d045-4c2c-bb57-47542686ee6b';
+  var PHONE_DISPLAY = '0435 219 425';
+
+  var PACKAGES = {
+    apartment: { label:'Apartment', base:650, std:'2 bedrooms' },
+    single:    { label:'Single Storey Home', base:850, std:'3 bedrooms' },
+    double:    { label:'Double Storey Home', base:1150, std:'4 bedrooms' }
+  };
+
+  /* Suburbs within roughly 30 km of Currumbin. Anything not matched gets the travel note. */
+  var IN_ZONE = ['currumbin','currumbin waters','currumbin valley','palm beach','elanora','tugun','bilinga','kirra','coolangatta','tweed heads','tweed heads south','tweed heads west','banora point','terranora','bilambil','bilambil heights','piggabeen','cobaki','cobaki lakes','carool','tomewin','burleigh heads','burleigh waters','tallebudgera','tallebudgera valley','miami','mermaid beach','mermaid waters','nobby beach','robina','varsity lakes','reedy creek','mudgeeraba','bonogin','broadbeach','broadbeach waters','clear island waters','carrara','merrimac','worongary','gilston','highland park','nerang','advancetown','austinville','springbrook','neranwood','surfers paradise','main beach','benowa','bundall','ashmore','molendinar','southport','labrador','parkwood','arundel','chevron island','isle of capri','kingscliff','fingal head','chinderah','cudgen','kings forest','casuarina','salt village','cabarita beach','bogangar','tanglewood','hastings point','pottsville','duranbah','tumbulgum','condong','eviron','urliup','dulguigan','north tumbulgum','bungalora','eungella','murwillumbah','south murwillumbah'];
+
+  var state = { prop:null, extras:0, situation:null, gross:null, leak:null, suburb:'', travel:false };
+  var visitedGross = false;
+
+  function $(sel){ return root.querySelector(sel); }
+  function $all(sel){ return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+  function money(n){ return '$' + n.toLocaleString('en-AU'); }
+
+  function show(step){
+    $all('.mm-screen').forEach(function(s){ s.classList.toggle('active', s.getAttribute('data-step') === String(step)); });
+    var counter = $('#mm-counter');
+    var fill = $('#mm-progress-fill');
+    if (step === 0){ counter.textContent = ''; fill.style.width = '0%'; }
+    else if (step >= 7){ counter.textContent = 'Your estimate'; fill.style.width = '100%'; }
+    else { counter.textContent = 'Question ' + step + ' of 6'; fill.style.width = (step/6*100) + '%'; }
+    try { root.scrollIntoView({behavior:'smooth', block:'start'}); } catch(e){}
+  }
+
+  /* ---------- Pricing engine (PRICING-RULES.md) ---------- */
+  function priceIt(){
+    var base = PACKAGES[state.prop].base;
+    var adj  = base + 100 * state.extras;            /* Adjusted Base = low end, always */
+    var atmo  = state.situation === 'atmo';
+    var musty = state.situation === 'musty';
+    var gross = musty ? 0 : (state.gross || 0);
+
+    var out = { low:adj, high:null, routing:'standard', notes:[], showPrice:true };
+
+    /* Routing rule 1: more than 5 colonised rooms, no online price */
+    if (gross > 5){
+      out.showPrice = false;
+      out.routing = 'inspection_required';
+      return out;
+    }
+
+    var grossUplift = 0.2 * base * gross;
+    var atmoUplift  = (atmo || musty) ? adj : 0;     /* doubler: high = 2 x Adjusted Base */
+    var uplift = Math.max(grossUplift, atmoUplift, 500); /* never stack; $500 minimum spread */
+    var rawHigh = adj + uplift;
+    out.high = rawHigh;
+
+    /* Routing rule 2: atmospheric AND colonised in 3+ rooms */
+    if (atmo && gross >= 3){ out.routing = 'inspect_first'; out.notes.push('inspect_first'); }
+
+    /* Routing rule 2a: price cap $3,000 */
+    if (rawHigh >= 3000){
+      out.high = 3000;
+      out.notes.push('cap');
+      if (out.routing === 'standard') out.routing = 'cap_inspection_600';
+    }
+
+    /* Routing rule 3: musty, no visible mould */
+    if (musty){
+      out.notes.push('musty');
+      if (out.routing === 'standard') out.routing = 'potential_atmospheric';
+    }
+
+    return out;
+  }
+
+  /* ---------- Result rendering ---------- */
+  function renderResult(){
+    var r = priceIt();
+    state.result = r;
+    var el = $('#mm-result');
+    var h = '';
+
+    if (!r.showPrice){
+      h += '<span class="mm-result-tag mod">Our honest recommendation</span>';
+      h += '<h2 class="mm-result-title">This one needs a proper look first</h2>';
+      h += '<div class="mm-callout"><p class="mm-callout-label">Investigation &amp; Report, ' + money(300) + '</p><p>With mould colonised in that many rooms, treatment is not the right first step. We recommend a thorough investigation into the cause of the mould and moisture, with a written report and recommendations. If treatment is possible, we will tell you. If it needs remediation, we will send a report with a scope of work and a quote. We are an IICRC certified firm and remediate to the S520 standard.</p></div>';
+    } else {
+      h += '<span class="mm-result-tag">Your estimate</span>';
+      h += '<h2 class="mm-result-title">Here is your treatment estimate</h2>';
+      h += '<div class="mm-score"><span class="mm-score-label">Estimated range, incl. GST</span><span class="mm-score-value">' + money(r.low) + '</span><span class="mm-score-to">to</span><span class="mm-score-value">' + money(r.high) + '</span>';
+      h += '<span class="mm-score-note">' + PACKAGES[state.prop].label + (state.extras ? ' with ' + state.extras + ' extra room' + (state.extras>1?'s':'') : '') + ': visible mould treatment and whole home fogging, including a report of findings.</span></div>';
+
+      if (r.notes.indexOf('inspect_first') > -1){
+        h += '<div class="mm-callout"><p class="mm-callout-label">Best next step: inspect and report first</p><p>With mould through the whole home and colonised mould in several rooms, it would be best to inspect and report before treatment, as this job may need remediation. We will investigate the issue and, if possible, treat while we are there. If it needs remediation, we will discuss options with you and send a report with a scope of work and a quote.</p></div>';
+      }
+      if (r.notes.indexOf('cap') > -1 && r.notes.indexOf('inspect_first') === -1){
+        h += '<div class="mm-callout"><p class="mm-callout-label">A property this size may need an inspection first</p><p>For larger properties we may recommend an Investigation &amp; Report at ' + money(600) + ' before treatment can be confirmed.</p></div>';
+      }
+      if (r.notes.indexOf('musty') > -1){
+        h += '<div class="mm-callout"><p class="mm-callout-label">Potential atmospheric mould</p><p>Many people smell mould before they see it, or mistake it for dust. If we confirm a musty smell but cannot find the mould, we recommend air sampling: independent, NATA accredited laboratory testing that identifies the mould and helps us find it. Ask us about it when we talk.</p></div>';
+      }
+    }
+
+    if (state.leak === 'yes'){
+      h += '<div class="mm-callout"><p class="mm-callout-label">Mould from a leak</p><p>Treating mould that has come from a leak is likely a temporary fix, and the job will likely need remediation to address the water damage at the source. Treatment is still an option to help in the meantime while remediation plans are put in place. We will talk you through both when we call.</p></div>';
+    }
+
+    if (state.travel){
+      h += '<div class="mm-callout"><p class="mm-callout-label">Travel</p><p>A travel charge applies for your area. We will confirm it when we call.</p></div>';
+    }
+
+    h += '<p class="mm-disclaimer">This is an estimate, not a quote. The range is usually accurate, but we need to see some photos and talk about the job to confirm the price. Mould is a climate problem, not a hygiene problem, and it is fixable.</p>';
+
+    el.innerHTML = h;
+    show(7);
+  }
+
+  /* ---------- Wiring ---------- */
+  $('#mm-start').addEventListener('click', function(){ show(1); });
+
+  $all('[data-prop]').forEach(function(b){
+    b.addEventListener('click', function(){
+      $all('[data-prop]').forEach(function(x){ x.classList.remove('selected'); });
+      b.classList.add('selected');
+      state.prop = b.getAttribute('data-prop');
+      $('#mm-extras-context').textContent = 'Your ' + PACKAGES[state.prop].label.toLowerCase() + ' standard set is ' + PACKAGES[state.prop].std + ' plus a bathroom, ensuite, living room, dining room, kitchen and laundry. Count any rooms beyond that. Any room type counts: extra bedrooms, an office, media room, gym, rumpus, second living area or extra bathrooms. Choose 0 if your home matches the standard set.';
+      setTimeout(function(){ show(2); }, 200);
+    });
+  });
+
+  $('#mm-minus').addEventListener('click', function(){
+    state.extras = Math.max(0, state.extras - 1);
+    $('#mm-extras-count').textContent = state.extras;
+  });
+  $('#mm-plus').addEventListener('click', function(){
+    state.extras = Math.min(8, state.extras + 1);
+    $('#mm-extras-count').textContent = state.extras;
+  });
+
+  $all('[data-sit]').forEach(function(b){
+    b.addEventListener('click', function(){
+      $all('[data-sit]').forEach(function(x){ x.classList.remove('selected'); });
+      b.classList.add('selected');
+      state.situation = b.getAttribute('data-sit');
+      setTimeout(function(){
+        if (state.situation === 'musty'){ state.gross = 0; visitedGross = false; show(5); }
+        else { visitedGross = true; show(4); }
+      }, 200);
+    });
+  });
+
+  $all('[data-gross]').forEach(function(b){
+    b.addEventListener('click', function(){
+      $all('[data-gross]').forEach(function(x){ x.classList.remove('selected'); });
+      b.classList.add('selected');
+      state.gross = parseInt(b.getAttribute('data-gross'), 10);
+      setTimeout(function(){ show(5); }, 200);
+    });
+  });
+
+
+  $all('[data-leak]').forEach(function(b){
+    b.addEventListener('click', function(){
+      $all('[data-leak]').forEach(function(x){ x.classList.remove('selected'); });
+      b.classList.add('selected');
+      state.leak = b.getAttribute('data-leak');
+      setTimeout(function(){ show(6); }, 200);
+    });
+  });
+  $('#mm-back-from-leak').addEventListener('click', function(){
+    show(visitedGross ? 4 : 3);
+  });
+
+  $all('[data-goto]').forEach(function(b){
+    b.addEventListener('click', function(){ show(parseInt(b.getAttribute('data-goto'), 10)); });
+  });
+  $('#mm-back-from-suburb').addEventListener('click', function(){
+    show(5);
+  });
+
+  $('#mm-see-estimate').addEventListener('click', function(){
+    var sub = $('#mm-suburb').value.trim();
+    if (!sub){ $('#mm-suburb-err').style.display = 'block'; return; }
+    $('#mm-suburb-err').style.display = 'none';
+    state.suburb = sub;
+    var norm = sub.toLowerCase().replace(/[^a-z\s]/g,'').replace(/\s+(qld|nsw|queensland)\s*$/,'').trim();
+    state.travel = IN_ZONE.indexOf(norm) === -1;
+    renderResult();
+  });
+
+  /* ---------- Quote request form ---------- */
+  $('#mm-show-form').addEventListener('click', function(){
+    $('#mm-form').style.display = 'block';
+    try { $('#mm-name').focus(); } catch(e){}
+  });
+
+  function payload(){
+    var r = state.result || {};
+    return {
+      full_name: $('#mm-name').value.trim(),
+      phone: $('#mm-phone').value.trim(),
+      email: $('#mm-email').value.trim(),
+      suburb: state.suburb,
+      property_type: PACKAGES[state.prop].label,
+      extra_rooms: state.extras,
+      gross_rooms: (state.gross !== null && state.gross > 5) ? '6+' : (state.gross || 0),
+      atmospheric: state.situation === 'atmo' ? 'yes' : 'no',
+      musty_only: state.situation === 'musty' ? 'yes' : 'no',
+      estimate_low: r.showPrice ? r.low : 0,
+      estimate_high: r.showPrice ? r.high : 0,
+      confirmed_leak: state.leak === 'yes' ? 'yes' : 'no',
+      travel_flag: state.travel ? 'yes' : 'no',
+      routing: r.routing || 'standard'
+    };
+  }
+
+  $('#mm-submit').addEventListener('click', function(){
+    var p = payload();
+    var ok = p.full_name.length >= 2 &&
+             p.phone.replace(/\D/g,'').length >= 8 &&
+             /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email);
+    var err = $('#mm-form-err');
+    if (!ok){ err.style.display = 'block'; return; }
+    err.style.display = 'none';
+    var btn = $('#mm-submit');
+    btn.disabled = true; btn.textContent = 'Sending...';
+
+    fetch(WEBHOOK, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify(p)
+    }).then(function(res){
+      if (!res.ok) throw new Error('bad status');
+      $('#mm-form').style.display = 'none';
+      var s = $('#mm-success');
+      s.innerHTML = '<p><b>Thanks, ' + p.full_name.split(' ')[0].replace(/[<>&]/g,'') + '. Request received.</b><br>We will call you to talk through the job and confirm an exact quote. If you have photos of the mould ready, that call gets even quicker.</p>';
+      s.style.display = 'block';
+    }).catch(function(){
+      btn.disabled = false; btn.innerHTML = 'Send my quote request <span class="mm-arrow">&rarr;</span>';
+      err.textContent = 'That did not go through. Please call us on ' + PHONE_DISPLAY + ' and we will sort it on the phone.';
+      err.style.display = 'block';
+    });
+  });
+
+  $('#mm-restart').addEventListener('click', function(){
+    state = { prop:null, extras:0, situation:null, gross:null, leak:null, suburb:'', travel:false };
+    visitedGross = false;
+    $all('.selected').forEach(function(x){ x.classList.remove('selected'); });
+    $('#mm-extras-count').textContent = '0';
+    $('#mm-suburb').value = '';
+    $('#mm-name').value = ''; $('#mm-phone').value = ''; $('#mm-email').value = '';
+    $('#mm-form').style.display = 'none';
+    $('#mm-success').style.display = 'none';
+    var btn = $('#mm-submit'); btn.disabled = false; btn.innerHTML = 'Send my quote request <span class="mm-arrow">&rarr;</span>';
+    show(0);
+  });
+
+  show(0);
+})();
+</script>
+<div class="mm-pagefoot">
+  Built by <strong>Mould Mates</strong> &middot; IICRC certified firm &middot; Brisbane, Gold Coast and Northern Rivers<br>
+  <a href="tel:0435219425">0435 219 425</a> &middot; <a href="https://mouldmates.com.au">mouldmates.com.au</a>
+</div>
+</body>
+</html>
