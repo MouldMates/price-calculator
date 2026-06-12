@@ -9,7 +9,6 @@
 <meta property="og:title" content="Free mould treatment price calculator | Mould Mates">
 <meta property="og:description" content="See what mould treatment costs for your home in about 60 seconds. Free and obligation free, no contact details needed. Brisbane, Gold Coast and Northern Rivers.">
 <meta property="og:site_name" content="Mould Mates">
-<!-- Add og:image once hosted, e.g. <meta property="og:image" content="https://mouldmates.github.io/price-calculator/preview.png"> -->
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#2c3345">
 <style>
@@ -211,9 +210,13 @@
       <button type="button" class="mm-answer" data-sit="atmo"><span class="mm-answer-mark"></span><span class="mm-answer-text">Visible mould through the whole home<small>Mould showing in all or nearly all rooms</small></span></button>
       <button type="button" class="mm-answer" data-sit="musty"><span class="mm-answer-mark"></span><span class="mm-answer-text">A musty smell but no visible mould<small>You can smell it but cannot find it</small></span></button>
     </div>
+    <div class="mm-callout" id="mm-musty-note" style="display:none;margin-bottom:18px;">
+      <p class="mm-callout-label">Air sampling may help here</p>
+      <p>Musty smells in your home but cannot see any mould? Taking air samples and sending them to a lab helps us find hidden mould. <a href="https://mouldmates.github.io/air-sampling-calculator/" style="color:var(--teal-bright);font-weight:600;text-decoration:none;">Try the air sampling calculator &rarr;</a></p>
+    </div>
     <div class="mm-controls">
       <button type="button" class="mm-btn-secondary" data-goto="2">&larr; Back</button>
-      <span></span>
+      <button type="button" class="mm-btn-primary" id="mm-musty-continue" style="display:none;">Continue with treatment <span class="mm-arrow">&rarr;</span></button>
     </div>
   </div>
 
@@ -398,9 +401,6 @@
       if (r.notes.indexOf('cap') > -1 && r.notes.indexOf('inspect_first') === -1){
         h += '<div class="mm-callout"><p class="mm-callout-label">A property this size may need an inspection first</p><p>For larger properties we may recommend an Investigation &amp; Report at ' + money(600) + ' before treatment can be confirmed.</p></div>';
       }
-      if (r.notes.indexOf('musty') > -1){
-        h += '<div class="mm-callout"><p class="mm-callout-label">Potential atmospheric mould</p><p>Many people smell mould before they see it, or mistake it for dust. If we confirm a musty smell but cannot find the mould, we recommend air sampling: independent, NATA accredited laboratory testing that identifies the mould and helps us find it. Ask us about it when we talk.</p></div>';
-      }
     }
 
     if (state.leak === 'yes'){
@@ -410,6 +410,8 @@
     if (state.travel){
       h += '<div class="mm-callout"><p class="mm-callout-label">Travel</p><p>A travel charge applies for your area. We will confirm it when we call.</p></div>';
     }
+
+    h += '<div class="mm-callout"><p class="mm-callout-label">Musty smells elsewhere?</p><p>Musty smells in other parts of your home but cannot see any mould? Taking air samples and sending them to a lab helps us find hidden mould. <a href="https://mouldmates.github.io/air-sampling-calculator/" style="color:var(--teal-bright);font-weight:600;text-decoration:none;">Try the air sampling calculator &rarr;</a></p></div>';
 
     h += '<p class="mm-disclaimer">This is an estimate, not a quote. The range is usually accurate, but we need to see some photos and talk about the job to confirm the price. Mould is a climate problem, not a hygiene problem, and it is fixable.</p>';
 
@@ -444,12 +446,19 @@
       $all('[data-sit]').forEach(function(x){ x.classList.remove('selected'); });
       b.classList.add('selected');
       state.situation = b.getAttribute('data-sit');
-      setTimeout(function(){
-        if (state.situation === 'musty'){ state.gross = 0; visitedGross = false; show(5); }
-        else { visitedGross = true; show(4); }
-      }, 200);
+      if (state.situation === 'musty'){
+        state.gross = 0; visitedGross = false;
+        $('#mm-musty-note').style.display = 'block';
+        $('#mm-musty-continue').style.display = 'inline-flex';
+      } else {
+        $('#mm-musty-note').style.display = 'none';
+        $('#mm-musty-continue').style.display = 'none';
+        visitedGross = true;
+        setTimeout(function(){ show(4); }, 200);
+      }
     });
   });
+  $('#mm-musty-continue').addEventListener('click', function(){ show(5); });
 
   $all('[data-gross]').forEach(function(b){
     b.addEventListener('click', function(){
