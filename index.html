@@ -162,9 +162,9 @@
   <div class="mm-screen" data-step="0">
     <span class="mm-intro-tag">Free price calculator</span>
     <h2 class="mm-intro-title">Get your <em>instant</em> estimate</h2>
-    <p class="mm-intro-sub">Answer six quick questions and see an estimate range for your home, on the spot. No strings attached, no obligation, and no contact details needed to see your price.</p>
+    <p class="mm-intro-sub">Answer seven quick questions and see an estimate range for your home, on the spot. No strings attached, no obligation, and no contact details needed to see your price.</p>
     <div class="mm-intro-meta">
-      <div class="mm-intro-meta-item"><span class="mm-dot"></span> 6 quick questions</div>
+      <div class="mm-intro-meta-item"><span class="mm-dot"></span> 7 quick questions</div>
       <div class="mm-intro-meta-item"><span class="mm-dot"></span> About 60 seconds</div>
       <div class="mm-intro-meta-item"><span class="mm-dot"></span> Instant estimate range</div>
       <div class="mm-intro-meta-item"><span class="mm-dot"></span> No contact details needed</div>
@@ -174,25 +174,26 @@
 
   <!-- Q1: property type -->
   <div class="mm-screen" data-step="1">
-    <p class="mm-qnum">Question 1 of 6</p>
+    <p class="mm-qnum">Question 1 of 7</p>
     <h2 class="mm-qtitle">What type of property is it?</h2>
-    <p class="mm-qcontext">A standard apartment is 2 bedrooms. A standard single storey home is 3 bedrooms. A standard double storey home is 4 bedrooms. Each includes a bathroom, ensuite, living room, dining room, kitchen and laundry.</p>
+    <p class="mm-qcontext">Choose the option that best matches your home.</p>
     <div class="mm-answers" role="radiogroup" aria-label="Property type">
-      <button type="button" class="mm-answer" data-prop="apartment"><span class="mm-answer-mark"></span><span class="mm-answer-text">Apartment<small>Standard 2 bedroom apartment</small></span></button>
-      <button type="button" class="mm-answer" data-prop="single"><span class="mm-answer-mark"></span><span class="mm-answer-text">Single storey home<small>Standard 3 bedroom home</small></span></button>
-      <button type="button" class="mm-answer" data-prop="double"><span class="mm-answer-mark"></span><span class="mm-answer-text">Double storey home<small>Standard 4 bedroom home</small></span></button>
+      <button type="button" class="mm-answer" data-prop="apartment"><span class="mm-answer-mark"></span><span class="mm-answer-text">Apartment</span></button>
+      <button type="button" class="mm-answer" data-prop="townhouse"><span class="mm-answer-mark"></span><span class="mm-answer-text">Townhouse</span></button>
+      <button type="button" class="mm-answer" data-prop="single"><span class="mm-answer-mark"></span><span class="mm-answer-text">Single storey home</span></button>
+      <button type="button" class="mm-answer" data-prop="double"><span class="mm-answer-mark"></span><span class="mm-answer-text">Double storey home</span></button>
     </div>
   </div>
 
-  <!-- Q2: extra rooms -->
+  <!-- Q2: bedrooms -->
   <div class="mm-screen" data-step="2">
-    <p class="mm-qnum">Question 2 of 6</p>
-    <h2 class="mm-qtitle">How many extra rooms beyond the standard set?</h2>
-    <p class="mm-qcontext" id="mm-extras-context">Count any rooms beyond the standard set. Any room type counts: extra bedrooms, an office, media room, gym, rumpus, second living area or extra bathrooms. Choose 0 if your home matches the standard set.</p>
+    <p class="mm-qnum">Question 2 of 7</p>
+    <h2 class="mm-qtitle">How many bedrooms does your home have?</h2>
+    <p class="mm-qcontext">A standard home also includes a bathroom, ensuite, living room, dining room, kitchen and laundry. Just tell us the number of bedrooms.</p>
     <div class="mm-stepper">
-      <button type="button" id="mm-minus" aria-label="Fewer rooms">&minus;</button>
-      <div class="mm-count" id="mm-extras-count">0</div>
-      <button type="button" id="mm-plus" aria-label="More rooms">+</button>
+      <button type="button" id="mm-bed-minus" aria-label="Fewer bedrooms">&minus;</button>
+      <div class="mm-count" id="mm-bed-count">2</div>
+      <button type="button" id="mm-bed-plus" aria-label="More bedrooms">+</button>
     </div>
     <div class="mm-controls">
       <button type="button" class="mm-btn-secondary" data-goto="1">&larr; Back</button>
@@ -200,9 +201,25 @@
     </div>
   </div>
 
-  <!-- Q3: situation -->
+  <!-- Q3: extra rooms -->
   <div class="mm-screen" data-step="3">
-    <p class="mm-qnum">Question 3 of 6</p>
+    <p class="mm-qnum">Question 3 of 7</p>
+    <h2 class="mm-qtitle">How many extra rooms beyond the standard set?</h2>
+    <p class="mm-qcontext">Count any rooms beyond the bedrooms and the standard set. For example an office, media room, gym, rumpus, second living area or extra bathrooms. Choose 0 if there are none.</p>
+    <div class="mm-stepper">
+      <button type="button" id="mm-minus" aria-label="Fewer rooms">&minus;</button>
+      <div class="mm-count" id="mm-extras-count">0</div>
+      <button type="button" id="mm-plus" aria-label="More rooms">+</button>
+    </div>
+    <div class="mm-controls">
+      <button type="button" class="mm-btn-secondary" data-goto="2">&larr; Back</button>
+      <button type="button" class="mm-btn-primary" data-goto="4">Next <span class="mm-arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- Q4: situation -->
+  <div class="mm-screen" data-step="4">
+    <p class="mm-qnum">Question 4 of 7</p>
     <h2 class="mm-qtitle">Which best describes what you are seeing?</h2>
     <p class="mm-qcontext">Mould is a climate problem, not a hygiene problem. Pick whichever fits best.</p>
     <div class="mm-answers" role="radiogroup" aria-label="Situation">
@@ -215,17 +232,17 @@
       <p>Musty smells in your home but cannot see any mould? Taking air samples and sending them to a lab helps us find hidden mould. <a href="https://mouldmates.github.io/air-sampling-calculator/" style="color:var(--teal-bright);font-weight:600;text-decoration:none;">Try the air sampling calculator &rarr;</a></p>
     </div>
     <div class="mm-controls">
-      <button type="button" class="mm-btn-secondary" data-goto="2">&larr; Back</button>
+      <button type="button" class="mm-btn-secondary" data-goto="3">&larr; Back</button>
       <button type="button" class="mm-btn-primary" id="mm-musty-continue" style="display:none;">Continue with treatment <span class="mm-arrow">&rarr;</span></button>
     </div>
   </div>
 
-  <!-- Q4: colonised rooms -->
-  <div class="mm-screen" data-step="4">
-    <p class="mm-qnum">Question 4 of 6</p>
-    <h2 class="mm-qtitle">In how many rooms is the mould colonised on 3 or more surfaces?</h2>
-    <p class="mm-qcontext">Colonised means patches of mould close together. Surfaces are the ceiling, each wall, window frames and fixtures like the shower. Example: a bathroom with mould on the ceiling, a wall and in the shower counts as one room.</p>
-    <div class="mm-chips" role="radiogroup" aria-label="Rooms with colonised mould on 3 or more surfaces">
+  <!-- Q5: colonised rooms -->
+  <div class="mm-screen" data-step="5">
+    <p class="mm-qnum">Question 5 of 7</p>
+    <h2 class="mm-qtitle">How many rooms have three or more patches of mould?</h2>
+    <p class="mm-qcontext">Example: a bedroom with two patches on the ceiling and one patch on a wall counts as one room. If the mould is scattered through the whole room, such as all over the ceiling and the window frame, that also counts as one room.</p>
+    <div class="mm-chips" role="radiogroup" aria-label="Rooms with three or more patches of mould">
       <button type="button" class="mm-chip" data-gross="0">0</button>
       <button type="button" class="mm-chip" data-gross="1">1</button>
       <button type="button" class="mm-chip" data-gross="2">2</button>
@@ -235,14 +252,14 @@
       <button type="button" class="mm-chip" data-gross="6">More than 5</button>
     </div>
     <div class="mm-controls">
-      <button type="button" class="mm-btn-secondary" data-goto="3">&larr; Back</button>
+      <button type="button" class="mm-btn-secondary" data-goto="4">&larr; Back</button>
       <span></span>
     </div>
   </div>
 
-  <!-- Q5: confirmed leak -->
-  <div class="mm-screen" data-step="5">
-    <p class="mm-qnum">Question 5 of 6</p>
+  <!-- Q6: confirmed leak -->
+  <div class="mm-screen" data-step="6">
+    <p class="mm-qnum">Question 6 of 7</p>
     <h2 class="mm-qtitle">Has the mould come from a confirmed leak?</h2>
     <p class="mm-qcontext">Any water ingress counts: a roof leak, a tap or pipe leak, a leaking dishwasher or washing machine, an overflowing bathtub, or flooding of any kind.</p>
     <div class="mm-answers" role="radiogroup" aria-label="Confirmed leak">
@@ -255,9 +272,9 @@
     </div>
   </div>
 
-  <!-- Q6: suburb -->
-  <div class="mm-screen" data-step="6">
-    <p class="mm-qnum">Question 6 of 6</p>
+  <!-- Q7: suburb -->
+  <div class="mm-screen" data-step="7">
+    <p class="mm-qnum">Question 7 of 7</p>
     <h2 class="mm-qtitle">Which suburb is the property in?</h2>
     <p class="mm-qcontext">We service Brisbane, Gold Coast and Northern Rivers. We ask this to see if a travel charge would apply.</p>
     <input type="text" class="mm-input" id="mm-suburb" placeholder="e.g. Palm Beach" autocomplete="off">
@@ -269,7 +286,7 @@
   </div>
 
   <!-- Result -->
-  <div class="mm-screen" data-step="7">
+  <div class="mm-screen" data-step="8">
     <div id="mm-result"></div>
     <div class="mm-cta-card">
       <p class="mm-cta-label">Want an exact quote?</p>
@@ -311,15 +328,16 @@
   var PHONE_DISPLAY = '0435 219 425';
 
   var PACKAGES = {
-    apartment: { label:'Apartment', base:650, std:'2 bedrooms' },
-    single:    { label:'Single Storey Home', base:850, std:'3 bedrooms' },
-    double:    { label:'Double Storey Home', base:1150, std:'4 bedrooms' }
+    apartment: { label:'Apartment', base:650, stdBed:2 },
+    townhouse: { label:'Townhouse', base:750, stdBed:3 },
+    single:    { label:'Single Storey Home', base:850, stdBed:3 },
+    double:    { label:'Double Storey Home', base:1150, stdBed:4 }
   };
 
   /* Suburbs within roughly 30 km of Currumbin. Anything not matched gets the travel note. */
   var IN_ZONE = ['currumbin','currumbin waters','currumbin valley','palm beach','elanora','tugun','bilinga','kirra','coolangatta','tweed heads','tweed heads south','tweed heads west','banora point','terranora','bilambil','bilambil heights','piggabeen','cobaki','cobaki lakes','carool','tomewin','burleigh heads','burleigh waters','tallebudgera','tallebudgera valley','miami','mermaid beach','mermaid waters','nobby beach','robina','varsity lakes','reedy creek','mudgeeraba','bonogin','broadbeach','broadbeach waters','clear island waters','carrara','merrimac','worongary','gilston','highland park','nerang','advancetown','austinville','springbrook','neranwood','surfers paradise','main beach','benowa','bundall','ashmore','molendinar','southport','labrador','parkwood','arundel','chevron island','isle of capri','kingscliff','fingal head','chinderah','cudgen','kings forest','casuarina','salt village','cabarita beach','bogangar','tanglewood','hastings point','pottsville','duranbah','tumbulgum','condong','eviron','urliup','dulguigan','north tumbulgum','bungalora','eungella','murwillumbah','south murwillumbah'];
 
-  var state = { prop:null, extras:0, situation:null, gross:null, leak:null, suburb:'', travel:false };
+  var state = { prop:null, bedrooms:2, extras:0, situation:null, gross:null, leak:null, suburb:'', travel:false };
   var visitedGross = false;
 
   function $(sel){ return root.querySelector(sel); }
@@ -331,18 +349,20 @@
     var counter = $('#mm-counter');
     var fill = $('#mm-progress-fill');
     if (step === 0){ counter.textContent = ''; fill.style.width = '0%'; }
-    else if (step >= 7){ counter.textContent = 'Your estimate'; fill.style.width = '100%'; }
-    else { counter.textContent = 'Question ' + step + ' of 6'; fill.style.width = (step/6*100) + '%'; }
+    else if (step >= 8){ counter.textContent = 'Your estimate'; fill.style.width = '100%'; }
+    else { counter.textContent = 'Question ' + step + ' of 7'; fill.style.width = (step/7*100) + '%'; }
     try { root.scrollIntoView({behavior:'smooth', block:'start'}); } catch(e){}
   }
 
-  /* ---------- Pricing engine (PRICING-RULES.md) ---------- */
+  /* ---------- Pricing engine ---------- */
   function priceIt(){
-    var base = PACKAGES[state.prop].base;
-    var adj  = base + 100 * state.extras;            /* Adjusted Base = low end, always */
-    var atmo  = state.situation === 'atmo';
-    var musty = state.situation === 'musty';
-    var gross = musty ? 0 : (state.gross || 0);
+    var base   = PACKAGES[state.prop].base;
+    var stdBed = PACKAGES[state.prop].stdBed;
+    var bedAdd = 100 * Math.max(0, state.bedrooms - stdBed);   /* bedrooms above the property standard */
+    var adj    = base + bedAdd + 100 * state.extras;           /* Adjusted Base = low end, always */
+    var atmo   = state.situation === 'atmo';
+    var musty  = state.situation === 'musty';
+    var gross  = musty ? 0 : (state.gross || 0);
 
     var out = { low:adj, high:null, routing:'standard', notes:[], showPrice:true };
 
@@ -353,9 +373,9 @@
       return out;
     }
 
-    var grossUplift = 0.2 * base * gross;
-    var atmoUplift  = (atmo || musty) ? adj : 0;     /* doubler: high = 2 x Adjusted Base */
-    var uplift = Math.max(grossUplift, atmoUplift, 500); /* never stack; $500 minimum spread */
+    var grossUplift = 0.2 * base * gross;                       /* 20% of the BASE PACKAGE PRICE per room */
+    var atmoUplift  = (atmo || musty) ? adj : 0;               /* doubler: high = 2 x Adjusted Base */
+    var uplift = Math.max(grossUplift, atmoUplift, 500);        /* never stack; $500 minimum spread */
     var rawHigh = adj + uplift;
     out.high = rawHigh;
 
@@ -388,15 +408,19 @@
     if (!r.showPrice){
       h += '<span class="mm-result-tag mod">Our honest recommendation</span>';
       h += '<h2 class="mm-result-title">This one needs a proper look first</h2>';
-      h += '<div class="mm-callout"><p class="mm-callout-label">Investigation &amp; Report, ' + money(300) + '</p><p>With mould colonised in that many rooms, treatment is not the right first step. We recommend a thorough investigation into the cause of the mould and moisture, with a written report and recommendations. If treatment is possible, we will tell you. If it needs remediation, we will send a report with a scope of work and a quote. We are an IICRC certified firm and remediate to the S520 standard.</p></div>';
+      h += '<div class="mm-callout"><p class="mm-callout-label">Investigation &amp; Report, ' + money(300) + '</p><p>With mould in that many rooms, treatment is not the right first step. We recommend a thorough investigation into the cause of the mould and moisture, with a written report and recommendations. If treatment is possible, we will tell you. If it needs remediation, we will send a report with a scope of work and a quote. We are an IICRC certified firm and remediate to the S520 standard.</p></div>';
     } else {
+      var parts = [];
+      if (state.bedrooms) parts.push(state.bedrooms + ' bedroom' + (state.bedrooms>1?'s':''));
+      if (state.extras) parts.push(state.extras + ' extra room' + (state.extras>1?'s':''));
+      var desc = PACKAGES[state.prop].label + (parts.length ? ' with ' + parts.join(' and ') : '');
       h += '<span class="mm-result-tag">Your estimate</span>';
       h += '<h2 class="mm-result-title">Here is your treatment estimate</h2>';
       h += '<div class="mm-score"><span class="mm-score-label">Estimated range, incl. GST</span><span class="mm-score-value">' + money(r.low) + '</span><span class="mm-score-to">to</span><span class="mm-score-value">' + money(r.high) + '</span>';
-      h += '<span class="mm-score-note">' + PACKAGES[state.prop].label + (state.extras ? ' with ' + state.extras + ' extra room' + (state.extras>1?'s':'') : '') + ': visible mould treatment and whole home fogging, including a report of findings.</span></div>';
+      h += '<span class="mm-score-note">' + desc + ': visible mould treatment and whole home fogging, including a report of findings.</span></div>';
 
       if (r.notes.indexOf('inspect_first') > -1){
-        h += '<div class="mm-callout"><p class="mm-callout-label">Best next step: inspect and report first</p><p>With mould through the whole home and colonised mould in several rooms, it would be best to inspect and report before treatment, as this job may need remediation. We will investigate the issue and, if possible, treat while we are there. If it needs remediation, we will discuss options with you and send a report with a scope of work and a quote.</p></div>';
+        h += '<div class="mm-callout"><p class="mm-callout-label">Best next step: inspect and report first</p><p>With mould through the whole home and three or more patches in several rooms, it would be best to inspect and report before treatment, as this job may need remediation. We will investigate the issue and, if possible, treat while we are there. If it needs remediation, we will discuss options with you and send a report with a scope of work and a quote.</p></div>';
       }
       if (r.notes.indexOf('cap') > -1 && r.notes.indexOf('inspect_first') === -1){
         h += '<div class="mm-callout"><p class="mm-callout-label">A property this size may need an inspection first</p><p>For larger properties we may recommend an Investigation &amp; Report at ' + money(600) + ' before treatment can be confirmed.</p></div>';
@@ -416,7 +440,7 @@
     h += '<p class="mm-disclaimer">This is an estimate, not a quote. The range is usually accurate, but we need to see some photos and talk about the job to confirm the price. Mould is a climate problem, not a hygiene problem, and it is fixable.</p>';
 
     el.innerHTML = h;
-    show(7);
+    show(8);
   }
 
   /* ---------- Wiring ---------- */
@@ -427,9 +451,19 @@
       $all('[data-prop]').forEach(function(x){ x.classList.remove('selected'); });
       b.classList.add('selected');
       state.prop = b.getAttribute('data-prop');
-      $('#mm-extras-context').textContent = 'Your ' + PACKAGES[state.prop].label.toLowerCase() + ' standard set is ' + PACKAGES[state.prop].std + ' plus a bathroom, ensuite, living room, dining room, kitchen and laundry. Count any rooms beyond that. Any room type counts: extra bedrooms, an office, media room, gym, rumpus, second living area or extra bathrooms. Choose 0 if your home matches the standard set.';
+      state.bedrooms = PACKAGES[state.prop].stdBed;             /* default bedrooms to the property standard */
+      $('#mm-bed-count').textContent = state.bedrooms;
       setTimeout(function(){ show(2); }, 200);
     });
+  });
+
+  $('#mm-bed-minus').addEventListener('click', function(){
+    state.bedrooms = Math.max(1, state.bedrooms - 1);
+    $('#mm-bed-count').textContent = state.bedrooms;
+  });
+  $('#mm-bed-plus').addEventListener('click', function(){
+    state.bedrooms = Math.min(8, state.bedrooms + 1);
+    $('#mm-bed-count').textContent = state.bedrooms;
   });
 
   $('#mm-minus').addEventListener('click', function(){
@@ -454,39 +488,38 @@
         $('#mm-musty-note').style.display = 'none';
         $('#mm-musty-continue').style.display = 'none';
         visitedGross = true;
-        setTimeout(function(){ show(4); }, 200);
+        setTimeout(function(){ show(5); }, 200);
       }
     });
   });
-  $('#mm-musty-continue').addEventListener('click', function(){ show(5); });
+  $('#mm-musty-continue').addEventListener('click', function(){ show(6); });
 
   $all('[data-gross]').forEach(function(b){
     b.addEventListener('click', function(){
       $all('[data-gross]').forEach(function(x){ x.classList.remove('selected'); });
       b.classList.add('selected');
       state.gross = parseInt(b.getAttribute('data-gross'), 10);
-      setTimeout(function(){ show(5); }, 200);
+      setTimeout(function(){ show(6); }, 200);
     });
   });
-
 
   $all('[data-leak]').forEach(function(b){
     b.addEventListener('click', function(){
       $all('[data-leak]').forEach(function(x){ x.classList.remove('selected'); });
       b.classList.add('selected');
       state.leak = b.getAttribute('data-leak');
-      setTimeout(function(){ show(6); }, 200);
+      setTimeout(function(){ show(7); }, 200);
     });
   });
   $('#mm-back-from-leak').addEventListener('click', function(){
-    show(visitedGross ? 4 : 3);
+    show(visitedGross ? 5 : 4);
   });
 
   $all('[data-goto]').forEach(function(b){
     b.addEventListener('click', function(){ show(parseInt(b.getAttribute('data-goto'), 10)); });
   });
   $('#mm-back-from-suburb').addEventListener('click', function(){
-    show(5);
+    show(6);
   });
 
   $('#mm-see-estimate').addEventListener('click', function(){
@@ -513,6 +546,7 @@
       email: $('#mm-email').value.trim(),
       suburb: state.suburb,
       property_type: PACKAGES[state.prop].label,
+      bedrooms: state.bedrooms,
       extra_rooms: state.extras,
       gross_rooms: (state.gross !== null && state.gross > 5) ? '6+' : (state.gross || 0),
       atmospheric: state.situation === 'atmo' ? 'yes' : 'no',
@@ -554,12 +588,15 @@
   });
 
   $('#mm-restart').addEventListener('click', function(){
-    state = { prop:null, extras:0, situation:null, gross:null, leak:null, suburb:'', travel:false };
+    state = { prop:null, bedrooms:2, extras:0, situation:null, gross:null, leak:null, suburb:'', travel:false };
     visitedGross = false;
     $all('.selected').forEach(function(x){ x.classList.remove('selected'); });
+    $('#mm-bed-count').textContent = '2';
     $('#mm-extras-count').textContent = '0';
     $('#mm-suburb').value = '';
     $('#mm-name').value = ''; $('#mm-phone').value = ''; $('#mm-email').value = '';
+    $('#mm-musty-note').style.display = 'none';
+    $('#mm-musty-continue').style.display = 'none';
     $('#mm-form').style.display = 'none';
     $('#mm-success').style.display = 'none';
     var btn = $('#mm-submit'); btn.disabled = false; btn.innerHTML = 'Send my quote request <span class="mm-arrow">&rarr;</span>';
