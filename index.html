@@ -579,7 +579,12 @@
       body: JSON.stringify(p)
     }).then(function(res){
       if (!res.ok) throw new Error('bad status');
-      if (THANKYOU_URL){ window.location.href = THANKYOU_URL; return; }
+      if (THANKYOU_URL){
+        var dest = THANKYOU_URL;
+        var fbclid = new URLSearchParams(window.location.search).get('fbclid');
+        if (fbclid) dest += (dest.indexOf('?') > -1 ? '&' : '?') + 'fbclid=' + encodeURIComponent(fbclid);
+        window.location.href = dest; return;
+      }
       $('#mm-form').style.display = 'none';
       var s = $('#mm-success');
       s.innerHTML = '<p><b>Thanks, ' + p.full_name.split(' ')[0].replace(/[<>&]/g,'') + '. Request received.</b><br>We will call you to talk through the job and confirm an exact quote. If you have photos of the mould ready, that call gets even quicker.</p>';
