@@ -619,5 +619,30 @@
   Built by <strong>Mould Mates</strong> &middot; IICRC certified firm &middot; Brisbane, Gold Coast and Northern Rivers<br>
   <a href="tel:0435219425">0435 219 425</a> &middot; <a href="https://mouldmates.com.au">mouldmates.com.au</a>
 </div>
+<!-- Mould Mates: tag which ad platform sent this visitor (Meta/Google) and
+     include it in the lead webhook payload. -->
+<script>
+(function(){
+  var q = new URLSearchParams(location.search);
+  var src = (q.get('utm_source') || '').toLowerCase();
+  var platform = 'Direct / organic';
+  if (q.get('fbclid') || ['meta','facebook','fb','ig','instagram'].indexOf(src) !== -1) platform = 'Meta';
+  else if (q.get('gclid') || q.get('gbraid') || q.get('wbraid') || src === 'google') platform = 'Google';
+  else if (src) platform = src;
+  var campaign = q.get('utm_campaign') || '';
+  var origFetch = window.fetch;
+  window.fetch = function(url, opts){
+    try {
+      if (typeof url === 'string' && url.indexOf('leadconnectorhq.com/hooks') !== -1 && opts && typeof opts.body === 'string') {
+        var b = JSON.parse(opts.body);
+        b.ad_platform = platform;
+        if (campaign) b.ad_campaign = campaign;
+        opts.body = JSON.stringify(b);
+      }
+    } catch(e){}
+    return origFetch.apply(this, arguments);
+  };
+})();
+</script>
 </body>
 </html>
