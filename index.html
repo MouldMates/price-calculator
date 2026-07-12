@@ -132,6 +132,18 @@
   #mmcalc .mm-form label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin:16px 0 7px;font-weight:500;}
   #mmcalc .mm-form label:first-child{margin-top:0;}
   #mmcalc .mm-form .mm-controls{margin-top:22px;justify-content:flex-end;}
+
+  /* Photo drop box (mould photos with the quote request) */
+  #mmcalc .mm-drop{border:1.5px dashed var(--border-strong);border-radius:10px;padding:20px 18px;text-align:center;cursor:pointer;transition:all .15s;background:var(--bg);}
+  #mmcalc .mm-drop:hover,#mmcalc .mm-drop.drag{border-color:var(--teal);background:var(--teal-soft);}
+  #mmcalc .mm-drop-inner{display:flex;flex-direction:column;gap:5px;align-items:center;}
+  #mmcalc .mm-drop-inner b{color:var(--ink);font-weight:600;font-family:'Inter',sans-serif;font-size:14.5px;letter-spacing:0;text-transform:none;}
+  #mmcalc .mm-drop-inner span{font-family:'Inter',sans-serif;font-size:12.5px;color:var(--dim);line-height:1.5;text-transform:none;letter-spacing:0;max-width:360px;}
+  #mmcalc .mm-thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;justify-content:center;}
+  #mmcalc .mm-thumb{position:relative;width:66px;height:66px;border-radius:8px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+  #mmcalc .mm-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  #mmcalc .mm-thumb button{position:absolute;top:3px;right:3px;width:19px;height:19px;border-radius:50%;border:none;background:rgba(44,51,69,0.86);color:#fff;font-size:13px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;}
+  #mmcalc .mm-thumb button:hover{background:#dc2626;}
   #mmcalc .mm-success{display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;}
   #mmcalc .mm-success::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:#16a34a;}
   #mmcalc .mm-success b{color:var(--ink);}
@@ -308,6 +320,15 @@
       <input type="tel" class="mm-input" id="mm-phone" autocomplete="tel">
       <label for="mm-email">Email address</label>
       <input type="email" class="mm-input" id="mm-email" autocomplete="email">
+      <label>Photos of the mould (optional, up to 20)</label>
+      <div class="mm-drop" id="mm-drop">
+        <input type="file" id="mm-photos" accept="image/*" multiple style="display:none;">
+        <div class="mm-drop-inner" id="mm-drop-inner">
+          <b>Add photos of the mould</b>
+          <span>Drag &amp; drop or tap to choose. Photos help us confirm your exact quote faster.</span>
+        </div>
+        <div class="mm-thumbs" id="mm-thumbs"></div>
+      </div>
       <p class="mm-err" id="mm-form-err">Please check your name, phone and email and try again.</p>
       <div class="mm-controls">
         <button type="button" class="mm-btn-primary" id="mm-submit">Send my quote request <span class="mm-arrow">&rarr;</span></button>
@@ -541,6 +562,73 @@
     try { $('#mm-name').focus(); } catch(e){}
   });
 
+  /* ---------- Photo drop box ----------
+     Files can't ride the JSON webhook, so each photo is pushed to the public
+     form-uploads bucket (anon INSERT-only, same as the site forms) and the
+     resulting public URLs go into the payload for the team to view. */
+  var SUPA_URL = 'https://vpwrwkdxipnnbmtejemr.supabase.co';
+  /* Legacy anon JWT — public-by-design, uploads only (form-uploads is
+     INSERT-only for anon). Same key the published site forms use. */
+  var SUPA_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZwd3J3a2R4aXBubmJtdGVqZW1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1MDAxODIsImV4cCI6MjA5ODA3NjE4Mn0.3qXRF6H5KqXoY4RreDQUjdjyc0fmSaeEsVN_N15sPnM';
+  var MAX_PHOTOS = 20;
+  var photos = [];       // File objects
+  var thumbUrls = [];    // object-URLs mirroring `photos` (revoked on re-render)
+
+  function clearThumbUrls(){ thumbUrls.forEach(function(u){ try { URL.revokeObjectURL(u); } catch(e){} }); thumbUrls = []; }
+  function renderThumbs(){
+    clearThumbUrls();
+    var wrap = $('#mm-thumbs'); wrap.innerHTML = '';
+    photos.forEach(function(f){
+      var url = URL.createObjectURL(f); thumbUrls.push(url);
+      var d = document.createElement('div'); d.className = 'mm-thumb';
+      var img = document.createElement('img'); img.src = url; img.alt = '';
+      var rm = document.createElement('button'); rm.type = 'button'; rm.setAttribute('aria-label', 'Remove photo'); rm.textContent = '×';
+      d.appendChild(img); d.appendChild(rm); wrap.appendChild(d);
+    });
+    $('#mm-drop-inner').querySelector('b').textContent = photos.length
+      ? (photos.length + ' of ' + MAX_PHOTOS + ' photo' + (photos.length > 1 ? 's' : '') + ' added')
+      : 'Add photos of the mould';
+  }
+  function addFiles(list){
+    var incoming = Array.prototype.slice.call(list || []).filter(function(f){ return /^image\//.test(f.type); });
+    photos = photos.concat(incoming).slice(0, MAX_PHOTOS);
+    renderThumbs();
+  }
+
+  var drop = $('#mm-drop'), photoInput = $('#mm-photos');
+  drop.addEventListener('click', function(e){ if (e.target.closest('button')) return; photoInput.click(); });
+  photoInput.addEventListener('change', function(){ addFiles(photoInput.files); photoInput.value = ''; });
+  drop.addEventListener('dragover', function(e){ e.preventDefault(); drop.classList.add('drag'); });
+  drop.addEventListener('dragleave', function(){ drop.classList.remove('drag'); });
+  drop.addEventListener('drop', function(e){ e.preventDefault(); drop.classList.remove('drag'); addFiles(e.dataTransfer.files); });
+  $('#mm-thumbs').addEventListener('click', function(e){
+    var btn = e.target.closest('button'); if (!btn) return;
+    e.stopPropagation();
+    var i = Array.prototype.indexOf.call(btn.parentNode.parentNode.children, btn.parentNode);
+    if (i > -1){ photos.splice(i, 1); renderThumbs(); }
+  });
+
+  function uid(){ try { return crypto.randomUUID(); } catch(e){ return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2); } }
+  // Upload every photo best-effort; skip any that fail so a bad photo never
+  // blocks the lead. Resolves to the list of public URLs that made it up.
+  function uploadPhotos(){
+    if (!photos.length) return Promise.resolve([]);
+    var urls = [];
+    return photos.reduce(function(chain, f){
+      return chain.then(function(){
+        var ext = (String(f.name || '').match(/\.[a-z0-9]+$/i) || ['.jpg'])[0].toLowerCase();
+        var path = 'price-calculator/' + uid() + ext;
+        return fetch(SUPA_URL + '/storage/v1/object/form-uploads/' + path, {
+          method: 'POST',
+          headers: { apikey: SUPA_JWT, authorization: 'Bearer ' + SUPA_JWT, 'content-type': f.type || 'application/octet-stream' },
+          body: f
+        }).then(function(res){
+          if (res.ok) urls.push(SUPA_URL + '/storage/v1/object/public/form-uploads/' + path);
+        }).catch(function(){ /* one failed photo must not sink the request */ });
+      });
+    }, Promise.resolve()).then(function(){ return urls; });
+  }
+
   function payload(){
     var r = state.result || {};
     return {
@@ -571,12 +659,17 @@
     if (!ok){ err.style.display = 'block'; return; }
     err.style.display = 'none';
     var btn = $('#mm-submit');
-    btn.disabled = true; btn.textContent = 'Sending...';
+    btn.disabled = true; btn.textContent = photos.length ? 'Uploading photos...' : 'Sending...';
 
-    fetch(WEBHOOK, {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body: JSON.stringify(p)
+    uploadPhotos().then(function(urls){
+      p.photos = urls;
+      p.photo_count = urls.length;
+      btn.textContent = 'Sending...';
+      return fetch(WEBHOOK, {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify(p)
+      });
     }).then(function(res){
       if (!res.ok) throw new Error('bad status');
       if (THANKYOU_URL){
@@ -587,7 +680,10 @@
       }
       $('#mm-form').style.display = 'none';
       var s = $('#mm-success');
-      s.innerHTML = '<p><b>Thanks, ' + p.full_name.split(' ')[0].replace(/[<>&]/g,'') + '. Request received.</b><br>We will call you to talk through the job and confirm an exact quote. If you have photos of the mould ready, that call gets even quicker.</p>';
+      var photoLine = p.photo_count
+        ? 'Thanks for the ' + p.photo_count + ' photo' + (p.photo_count > 1 ? 's' : '') + ' — they help us confirm your exact quote faster.'
+        : 'We will call you to talk through the job and confirm an exact quote. If you have photos of the mould ready, that call gets even quicker.';
+      s.innerHTML = '<p><b>Thanks, ' + p.full_name.split(' ')[0].replace(/[<>&]/g,'') + '. Request received.</b><br>' + photoLine + '</p>';
       s.style.display = 'block';
     }).catch(function(){
       btn.disabled = false; btn.innerHTML = 'Send my quote request <span class="mm-arrow">&rarr;</span>';
@@ -604,6 +700,7 @@
     $('#mm-extras-count').textContent = '0';
     $('#mm-suburb').value = '';
     $('#mm-name').value = ''; $('#mm-phone').value = ''; $('#mm-email').value = '';
+    photos = []; renderThumbs();
     $('#mm-musty-note').style.display = 'none';
     $('#mm-musty-continue').style.display = 'none';
     $('#mm-form').style.display = 'none';
