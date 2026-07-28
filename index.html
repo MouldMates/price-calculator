@@ -308,7 +308,7 @@
         <button type="button" class="mm-cta-quote" id="mm-show-form">Request an exact quote</button>
       </div>
       <div class="mm-cta-meta">
-        <span>Free quote within 24 hours</span>
+        <span>Free treatment quote within 24 hours</span>
         <span>IICRC certified firm</span>
         <span>Obligation free</span>
       </div>
@@ -758,6 +758,10 @@
       if (typeof url === 'string' && url.indexOf('/functions/v1/inbound-lead') !== -1 && opts && typeof opts.body === 'string') {
         var b = JSON.parse(opts.body);
         b['Ad platform'] = platform;
+        // A Meta/Google ad click sets the lead SOURCE to that channel, so it
+        // reports as Meta/Google (not 'Treatment calculator'). Organic clicks
+        // keep the calculator label. inbound-lead also maps click ids centrally.
+        if (platform === 'Meta' || platform === 'Google') b.source = platform;
         if (campaign) b['Ad campaign'] = campaign;
         opts.body = JSON.stringify(b);
       }
