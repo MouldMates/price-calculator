@@ -320,6 +320,13 @@
       <input type="tel" class="mm-input" id="mm-phone" autocomplete="tel">
       <label for="mm-email">Email address</label>
       <input type="email" class="mm-input" id="mm-email" autocomplete="email">
+      <label for="mm-role">Are you the owner, tenant or property manager?</label>
+      <select class="mm-input" id="mm-role">
+        <option value="">Please choose&hellip;</option>
+        <option value="Owner">Owner</option>
+        <option value="Tenant">Tenant</option>
+        <option value="Property manager">Property manager</option>
+      </select>
       <label>Photos of the mould (optional, up to 20)</label>
       <div class="mm-drop" id="mm-drop">
         <input type="file" id="mm-photos" accept="image/*" multiple style="display:none;">
@@ -329,7 +336,7 @@
         </div>
         <div class="mm-thumbs" id="mm-thumbs"></div>
       </div>
-      <p class="mm-err" id="mm-form-err">Please check your name, phone and email and try again.</p>
+      <p class="mm-err" id="mm-form-err">Please check your name, phone, email and whether you're the owner, tenant or property manager, then try again.</p>
       <div class="mm-controls">
         <button type="button" class="mm-btn-primary" id="mm-submit">Send my quote request <span class="mm-arrow">&rarr;</span></button>
       </div>
@@ -344,7 +351,14 @@
   var root = document.getElementById('mmcalc');
   if(!root) return;
 
-  var WEBHOOK = 'https://services.leadconnectorhq.com/hooks/nIVRTn1y71wQ3dAgraqE/webhook-trigger/29e763cf-d045-4c2c-bb57-47542686ee6b';
+  // Post the lead STRAIGHT to our own inbound-lead webhook (not GoHighLevel).
+  // GHL only forwarded fields you had mapped in its workflow and silently
+  // dropped the rest — that is how uploaded photos never reached a lead. Posting
+  // direct means every field (photos, owner/tenant, anything added later) is
+  // carried through automatically. CALC_KEY is the public calculator key
+  // (separate from the server GHL/Google key) and is rate-limited server-side.
+  var WEBHOOK = 'https://vpwrwkdxipnnbmtejemr.supabase.co/functions/v1/inbound-lead';
+  var CALC_KEY = 'mmcalc_795ojx2mckQXxS8OGb9D9THLvtyGLZ85ASoRw_sXGMk';
   var PHONE_DISPLAY = '0435 219 425';
   /* Set THANKYOU_URL to your GHL thank-you page (where your pixel lives), e.g.
      'https://mouldmates.com.au/quote-thank-you'. On a successful quote request the
@@ -629,6 +643,10 @@
     }, Promise.resolve()).then(function(){ return urls; });
   }
 
+  // Keys mirror the labels the office already sees on a lead. full_name / email
+  // / phone / suburb are the mapped contact fields; `source` sets the lead
+  // source; `key` authorises the post; the human-readable keys become the
+  // lead's survey answers. Photos are added in the submit handler below.
   function payload(){
     var r = state.result || {};
     return {
@@ -636,17 +654,20 @@
       phone: $('#mm-phone').value.trim(),
       email: $('#mm-email').value.trim(),
       suburb: state.suburb,
-      property_type: PACKAGES[state.prop].label,
-      bedrooms: state.bedrooms,
-      extra_rooms: state.extras,
-      gross_rooms: (state.gross !== null && state.gross > 5) ? '6+' : (state.gross || 0),
-      atmospheric: state.situation === 'atmo' ? 'yes' : 'no',
-      musty_only: state.situation === 'musty' ? 'yes' : 'no',
-      estimate_low: r.showPrice ? r.low : 0,
-      estimate_high: r.showPrice ? r.high : 0,
-      confirmed_leak: state.leak === 'yes' ? 'yes' : 'no',
-      travel_flag: state.travel ? 'yes' : 'no',
-      routing: r.routing || 'standard'
+      source: 'Treatment calculator',
+      key: CALC_KEY,
+      'Are you the owner, tenant or property manager?': $('#mm-role').value,
+      'Property type': PACKAGES[state.prop].label,
+      'Bedrooms': state.bedrooms,
+      'Extra rooms': state.extras,
+      'Rooms with visible mould': (state.gross !== null && state.gross > 5) ? '6+' : (state.gross || 0),
+      'Atmospheric / whole-home smell': state.situation === 'atmo' ? 'yes' : 'no',
+      'Musty smell only': state.situation === 'musty' ? 'yes' : 'no',
+      'Estimate low ($)': r.showPrice ? r.low : 0,
+      'Estimate high ($)': r.showPrice ? r.high : 0,
+      'Confirmed leak': state.leak === 'yes' ? 'yes' : 'no',
+      'Outside travel zone': state.travel ? 'yes' : 'no',
+      'Routing': r.routing || 'standard'
     };
   }
 
@@ -654,16 +675,20 @@
     var p = payload();
     var ok = p.full_name.length >= 2 &&
              p.phone.replace(/\D/g,'').length >= 8 &&
-             /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email);
+             /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email) &&
+             !!$('#mm-role').value;
     var err = $('#mm-form-err');
     if (!ok){ err.style.display = 'block'; return; }
     err.style.display = 'none';
     var btn = $('#mm-submit');
     btn.disabled = true; btn.textContent = photos.length ? 'Uploading photos...' : 'Sending...';
 
+    var nPhotos = 0;
     uploadPhotos().then(function(urls){
-      p.photos = urls;
-      p.photo_count = urls.length;
+      // Comma-join so the URLs ride as one string field the webhook recognises
+      // as photos (and stores against the lead).
+      p.photos = urls.join(',');
+      nPhotos = urls.length;
       btn.textContent = 'Sending...';
       return fetch(WEBHOOK, {
         method:'POST',
@@ -680,8 +705,8 @@
       }
       $('#mm-form').style.display = 'none';
       var s = $('#mm-success');
-      var photoLine = p.photo_count
-        ? 'Thanks for the ' + p.photo_count + ' photo' + (p.photo_count > 1 ? 's' : '') + ' — they help us confirm your exact quote faster.'
+      var photoLine = nPhotos
+        ? 'Thanks for the ' + nPhotos + ' photo' + (nPhotos > 1 ? 's' : '') + ' — they help us confirm your exact quote faster.'
         : 'We will call you to talk through the job and confirm an exact quote. If you have photos of the mould ready, that call gets even quicker.';
       s.innerHTML = '<p><b>Thanks, ' + p.full_name.split(' ')[0].replace(/[<>&]/g,'') + '. Request received.</b><br>' + photoLine + '</p>';
       s.style.display = 'block';
@@ -699,7 +724,7 @@
     $('#mm-bed-count').textContent = '2';
     $('#mm-extras-count').textContent = '0';
     $('#mm-suburb').value = '';
-    $('#mm-name').value = ''; $('#mm-phone').value = ''; $('#mm-email').value = '';
+    $('#mm-name').value = ''; $('#mm-phone').value = ''; $('#mm-email').value = ''; $('#mm-role').value = '';
     photos = []; renderThumbs();
     $('#mm-musty-note').style.display = 'none';
     $('#mm-musty-continue').style.display = 'none';
@@ -730,10 +755,10 @@
   var origFetch = window.fetch;
   window.fetch = function(url, opts){
     try {
-      if (typeof url === 'string' && url.indexOf('leadconnectorhq.com/hooks') !== -1 && opts && typeof opts.body === 'string') {
+      if (typeof url === 'string' && url.indexOf('/functions/v1/inbound-lead') !== -1 && opts && typeof opts.body === 'string') {
         var b = JSON.parse(opts.body);
-        b.ad_platform = platform;
-        if (campaign) b.ad_campaign = campaign;
+        b['Ad platform'] = platform;
+        if (campaign) b['Ad campaign'] = campaign;
         opts.body = JSON.stringify(b);
       }
     } catch(e){}
