@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free mould treatment price calculator | Mould Mates</title>
-<meta name="description" content="See what mould treatment costs for your home in about 60 seconds. Free and obligation free, no contact details needed. Brisbane, Gold Coast and Northern Rivers.">
+<meta name="description" content="See what mould treatment costs for your home in about 30 seconds. Free and obligation free, no contact details needed. Brisbane, Gold Coast and Northern Rivers.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Free mould treatment price calculator | Mould Mates">
-<meta property="og:description" content="See what mould treatment costs for your home in about 60 seconds. Free and obligation free, no contact details needed. Brisbane, Gold Coast and Northern Rivers.">
+<meta property="og:description" content="See what mould treatment costs for your home in about 30 seconds. Free and obligation free, no contact details needed. Brisbane, Gold Coast and Northern Rivers.">
 <meta property="og:site_name" content="Mould Mates">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#2c3345">
@@ -173,131 +173,73 @@
   <div class="mm-screen" data-step="0">
     <span class="mm-intro-tag">Free price calculator</span>
     <h2 class="mm-intro-title">Get your <em>instant</em> estimate</h2>
-    <p class="mm-intro-sub">Answer seven quick questions and see an estimate range for your home, on the spot. No strings attached, no obligation, and no contact details needed to see your price.</p>
+    <p class="mm-intro-sub">Answer three quick questions and see an estimate range for your home, on the spot. No strings attached, no obligation, and no contact details needed to see your price.</p>
     <div class="mm-intro-meta">
-      <div class="mm-intro-meta-item"><span class="mm-dot"></span> 7 quick questions</div>
-      <div class="mm-intro-meta-item"><span class="mm-dot"></span> About 60 seconds</div>
+      <div class="mm-intro-meta-item"><span class="mm-dot"></span> 3 quick questions</div>
+      <div class="mm-intro-meta-item"><span class="mm-dot"></span> About 30 seconds</div>
       <div class="mm-intro-meta-item"><span class="mm-dot"></span> Instant estimate range</div>
       <div class="mm-intro-meta-item"><span class="mm-dot"></span> No contact details needed</div>
     </div>
     <button type="button" class="mm-btn-primary" id="mm-start">Start the calculator <span class="mm-arrow">&rarr;</span></button>
   </div>
 
-  <!-- Q1: property type -->
+  <!-- Q1: rooms affected -->
   <div class="mm-screen" data-step="1">
-    <p class="mm-qnum">Question 1 of 7</p>
-    <h2 class="mm-qtitle">What type of property is it?</h2>
-    <p class="mm-qcontext">Choose the option that best matches your home.</p>
-    <div class="mm-answers" role="radiogroup" aria-label="Property type">
-      <button type="button" class="mm-answer" data-prop="apartment"><span class="mm-answer-mark"></span><span class="mm-answer-text">Apartment</span></button>
-      <button type="button" class="mm-answer" data-prop="townhouse"><span class="mm-answer-mark"></span><span class="mm-answer-text">Townhouse</span></button>
-      <button type="button" class="mm-answer" data-prop="single"><span class="mm-answer-mark"></span><span class="mm-answer-text">Single storey home</span></button>
-      <button type="button" class="mm-answer" data-prop="double"><span class="mm-answer-mark"></span><span class="mm-answer-text">Double storey home</span></button>
+    <p class="mm-qnum">Question 1 of 3</p>
+    <h2 class="mm-qtitle">How many rooms are affected?</h2>
+    <p class="mm-qcontext">Count the rooms where you can see mould. Your best guess is all we need. Every room we treat is fogged as part of the process, and we confirm the exact price once we have seen your photos and had a quick chat.</p>
+    <div class="mm-chips" role="radiogroup" aria-label="Number of rooms affected">
+      <button type="button" class="mm-chip" data-rooms="1">1</button>
+      <button type="button" class="mm-chip" data-rooms="2">2</button>
+      <button type="button" class="mm-chip" data-rooms="3">3</button>
+      <button type="button" class="mm-chip" data-rooms="4">4</button>
+      <button type="button" class="mm-chip" data-rooms="5">5</button>
+      <button type="button" class="mm-chip" data-rooms="6">6</button>
+      <button type="button" class="mm-chip" data-rooms="7">7</button>
+      <button type="button" class="mm-chip" data-rooms="8">8</button>
+      <button type="button" class="mm-chip" data-rooms="9">9</button>
+      <button type="button" class="mm-chip" data-rooms="10">10</button>
+      <button type="button" class="mm-chip" data-rooms="11">11</button>
+      <button type="button" class="mm-chip" data-rooms="12">12</button>
+      <button type="button" class="mm-chip" data-rooms="13">13</button>
+      <button type="button" class="mm-chip" data-rooms="14">14</button>
+      <button type="button" class="mm-chip" data-rooms="15">15</button>
+    </div>
+    <div class="mm-answers" style="margin-top:24px;" role="radiogroup" aria-label="No visible mould">
+      <button type="button" class="mm-answer" data-rooms="musty"><span class="mm-answer-mark"></span><span class="mm-answer-text">I cannot see any mould, just a musty smell<small>You can smell it but cannot find it</small></span></button>
     </div>
   </div>
 
-  <!-- Q2: bedrooms -->
+  <!-- Q2: leak or flood -->
   <div class="mm-screen" data-step="2">
-    <p class="mm-qnum">Question 2 of 7</p>
-    <h2 class="mm-qtitle">How many bedrooms does your home have?</h2>
-    <p class="mm-qcontext">A standard home also includes a bathroom, ensuite, living room, dining room, kitchen and laundry. Just tell us the number of bedrooms.</p>
-    <div class="mm-stepper">
-      <button type="button" id="mm-bed-minus" aria-label="Fewer bedrooms">&minus;</button>
-      <div class="mm-count" id="mm-bed-count">2</div>
-      <button type="button" id="mm-bed-plus" aria-label="More bedrooms">+</button>
-    </div>
-    <div class="mm-controls">
-      <button type="button" class="mm-btn-secondary" data-goto="1">&larr; Back</button>
-      <button type="button" class="mm-btn-primary" data-goto="3">Next <span class="mm-arrow">&rarr;</span></button>
-    </div>
-  </div>
-
-  <!-- Q3: extra rooms -->
-  <div class="mm-screen" data-step="3">
-    <p class="mm-qnum">Question 3 of 7</p>
-    <h2 class="mm-qtitle">How many extra rooms beyond the standard set?</h2>
-    <p class="mm-qcontext">Count any rooms beyond the bedrooms and the standard set. For example an office, media room, gym, rumpus, second living area or extra bathrooms. Choose 0 if there are none.</p>
-    <div class="mm-stepper">
-      <button type="button" id="mm-minus" aria-label="Fewer rooms">&minus;</button>
-      <div class="mm-count" id="mm-extras-count">0</div>
-      <button type="button" id="mm-plus" aria-label="More rooms">+</button>
-    </div>
-    <div class="mm-controls">
-      <button type="button" class="mm-btn-secondary" data-goto="2">&larr; Back</button>
-      <button type="button" class="mm-btn-primary" data-goto="4">Next <span class="mm-arrow">&rarr;</span></button>
-    </div>
-  </div>
-
-  <!-- Q4: situation -->
-  <div class="mm-screen" data-step="4">
-    <p class="mm-qnum">Question 4 of 7</p>
-    <h2 class="mm-qtitle">Which best describes what you are seeing?</h2>
-    <p class="mm-qcontext">Mould is a climate problem, not a hygiene problem. Pick whichever fits best.</p>
-    <div class="mm-answers" role="radiogroup" aria-label="Situation">
-      <button type="button" class="mm-answer" data-sit="some"><span class="mm-answer-mark"></span><span class="mm-answer-text">Visible mould in one or a few rooms<small>Spots or patches in places like the bathroom, a wardrobe or on window frames</small></span></button>
-      <button type="button" class="mm-answer" data-sit="atmo"><span class="mm-answer-mark"></span><span class="mm-answer-text">Visible mould through the whole home<small>Mould showing in all or nearly all rooms</small></span></button>
-      <button type="button" class="mm-answer" data-sit="musty"><span class="mm-answer-mark"></span><span class="mm-answer-text">A musty smell but no visible mould<small>You can smell it but cannot find it</small></span></button>
-    </div>
-    <div class="mm-callout" id="mm-musty-note" style="display:none;margin-bottom:18px;">
-      <p class="mm-callout-label">Air sampling may help here</p>
-      <p>Musty smells in your home but cannot see any mould? Taking air samples and sending them to a lab helps us find hidden mould. <a href="https://mouldmates.github.io/air-sampling-calculator/" style="color:var(--teal-bright);font-weight:600;text-decoration:none;">Try the air sampling calculator &rarr;</a></p>
-    </div>
-    <div class="mm-controls">
-      <button type="button" class="mm-btn-secondary" data-goto="3">&larr; Back</button>
-      <button type="button" class="mm-btn-primary" id="mm-musty-continue" style="display:none;">Continue with treatment <span class="mm-arrow">&rarr;</span></button>
-    </div>
-  </div>
-
-  <!-- Q5: colonised rooms -->
-  <div class="mm-screen" data-step="5">
-    <p class="mm-qnum">Question 5 of 7</p>
-    <h2 class="mm-qtitle">How many rooms have three or more patches, or one large patch, of mould?</h2>
-    <p class="mm-qcontext">A large patch means most of one surface, for example most of the ceiling or an area about one metre by one metre. Example: a bedroom with two patches on the ceiling and one patch on a wall counts as one room. If the mould is scattered through the whole room, such as all over the ceiling and the window frame, that also counts as one room.</p>
-    <div class="mm-chips" role="radiogroup" aria-label="Rooms with three or more patches or one large patch of mould">
-      <button type="button" class="mm-chip" data-gross="0">0</button>
-      <button type="button" class="mm-chip" data-gross="1">1</button>
-      <button type="button" class="mm-chip" data-gross="2">2</button>
-      <button type="button" class="mm-chip" data-gross="3">3</button>
-      <button type="button" class="mm-chip" data-gross="4">4</button>
-      <button type="button" class="mm-chip" data-gross="5">5</button>
-      <button type="button" class="mm-chip" data-gross="6">More than 5</button>
-    </div>
-    <div class="mm-controls">
-      <button type="button" class="mm-btn-secondary" data-goto="4">&larr; Back</button>
-      <span></span>
-    </div>
-  </div>
-
-  <!-- Q6: confirmed leak -->
-  <div class="mm-screen" data-step="6">
-    <p class="mm-qnum">Question 6 of 7</p>
-    <h2 class="mm-qtitle">Has the mould come from a confirmed leak?</h2>
-    <p class="mm-qcontext">Any water ingress counts: a roof leak, a tap or pipe leak, a leaking dishwasher or washing machine, an overflowing bathtub, or flooding of any kind.</p>
-    <div class="mm-answers" role="radiogroup" aria-label="Confirmed leak">
-      <button type="button" class="mm-answer" data-leak="yes"><span class="mm-answer-mark"></span><span class="mm-answer-text">Yes, there is or was a confirmed leak</span></button>
+    <p class="mm-qnum">Question 2 of 3</p>
+    <h2 class="mm-qtitle">Has the mould come from a leak or a flood?</h2>
+    <p class="mm-qcontext">Any water ingress counts: a roof leak, a tap or pipe leak, a leaking dishwasher or washing machine, an overflowing bathtub, or flooding of any kind. We ask because water damage often needs investigating before treatment is the right step.</p>
+    <div class="mm-answers" role="radiogroup" aria-label="Leak or flood">
+      <button type="button" class="mm-answer" data-leak="yes"><span class="mm-answer-mark"></span><span class="mm-answer-text">Yes, there is or was a leak or a flood</span></button>
       <button type="button" class="mm-answer" data-leak="no"><span class="mm-answer-mark"></span><span class="mm-answer-text">No, or not sure</span></button>
     </div>
     <div class="mm-controls">
-      <button type="button" class="mm-btn-secondary" id="mm-back-from-leak">&larr; Back</button>
+      <button type="button" class="mm-btn-secondary" data-goto="1">&larr; Back</button>
       <span></span>
     </div>
   </div>
 
-  <!-- Q7: suburb -->
-  <div class="mm-screen" data-step="7">
-    <p class="mm-qnum">Question 7 of 7</p>
+  <!-- Q3: suburb -->
+  <div class="mm-screen" data-step="3">
+    <p class="mm-qnum">Question 3 of 3</p>
     <h2 class="mm-qtitle">Which suburb is the property in?</h2>
     <p class="mm-qcontext">We service Brisbane, Gold Coast and Northern Rivers. We ask this to see if a travel charge would apply.</p>
     <input type="text" class="mm-input" id="mm-suburb" placeholder="e.g. Palm Beach" autocomplete="off">
     <p class="mm-err" id="mm-suburb-err">Please enter your suburb so we can check your area.</p>
     <div class="mm-controls" style="margin-top:28px;">
-      <button type="button" class="mm-btn-secondary" id="mm-back-from-suburb">&larr; Back</button>
+      <button type="button" class="mm-btn-secondary" data-goto="2">&larr; Back</button>
       <button type="button" class="mm-btn-primary" id="mm-see-estimate">See my estimate <span class="mm-arrow">&rarr;</span></button>
     </div>
   </div>
 
   <!-- Result -->
-  <div class="mm-screen" data-step="8">
+  <div class="mm-screen" data-step="4">
     <div id="mm-result"></div>
     <div class="mm-cta-card">
       <p class="mm-cta-label">Want an exact quote?</p>
@@ -342,6 +284,9 @@
       </div>
     </div>
     <div class="mm-success" id="mm-success"></div>
+    <!-- Supporting notes sit BELOW the quote request: the ask matters more
+         than the fogging and air-sampling asides. -->
+    <div id="mm-result-notes"></div>
     <button type="button" class="mm-restart" id="mm-restart">Start again</button>
   </div>
 </div>
@@ -365,18 +310,24 @@
      visitor is sent there so the pixel fires. Leave blank to show the on-page message. */
   var THANKYOU_URL = 'https://mouldmates.com.au/treatment-thank-you';
 
-  var PACKAGES = {
-    apartment: { label:'Apartment', base:650, stdBed:2 },
-    townhouse: { label:'Townhouse', base:750, stdBed:3 },
-    single:    { label:'Single Storey Home', base:850, stdBed:3 },
-    double:    { label:'Double Storey Home', base:1150, stdBed:4 }
-  };
+  /* Pricing: we price the WORK THEY WANT DONE, not the property. The first
+     room carries the one-time costs (travel, setup, containment, the report);
+     every room after that is the flat marginal rate. Every treated room
+     includes fogging that room, so there is no whole-home cost hiding in the
+     package. Full rules + stress test: TREATMENT-CALCULATOR-PRICING-RULES.md */
+  var FIRST_ROOM = 750;    /* also the bottom-end fee */
+  var EXTRA_ROOM = 250;
+  var SPREAD     = 0.15;   /* the range absorbs severity, which we no longer ask about */
+  var FLOOR      = 750;    /* the low end never prints below this */
+  var MAX_ROOMS  = 15;
+  var TOTAL_Q    = 3;
+  var STEP_RESULT = 4;
+  var FOG_PER_FLOOR = 400; /* whole-home fogging, mentioned only, never computed */
 
   /* Suburbs within roughly 30 km of Currumbin. Anything not matched gets the travel note. */
   var IN_ZONE = ['currumbin','currumbin waters','currumbin valley','palm beach','elanora','tugun','bilinga','kirra','coolangatta','tweed heads','tweed heads south','tweed heads west','banora point','terranora','bilambil','bilambil heights','piggabeen','cobaki','cobaki lakes','carool','tomewin','burleigh heads','burleigh waters','tallebudgera','tallebudgera valley','miami','mermaid beach','mermaid waters','nobby beach','robina','varsity lakes','reedy creek','mudgeeraba','bonogin','broadbeach','broadbeach waters','clear island waters','carrara','merrimac','worongary','gilston','highland park','nerang','advancetown','austinville','springbrook','neranwood','surfers paradise','main beach','benowa','bundall','ashmore','molendinar','southport','labrador','parkwood','arundel','chevron island','isle of capri','kingscliff','fingal head','chinderah','cudgen','kings forest','casuarina','salt village','cabarita beach','bogangar','tanglewood','hastings point','pottsville','duranbah','tumbulgum','condong','eviron','urliup','dulguigan','north tumbulgum','bungalora','eungella','murwillumbah','south murwillumbah'];
 
-  var state = { prop:null, bedrooms:2, extras:0, situation:null, gross:null, leak:null, suburb:'', travel:false };
-  var visitedGross = false;
+  var state = { rooms:null, musty:false, leak:null, suburb:'', travel:false };
 
   function $(sel){ return root.querySelector(sel); }
   function $all(sel){ return Array.prototype.slice.call(root.querySelectorAll(sel)); }
@@ -387,157 +338,88 @@
     var counter = $('#mm-counter');
     var fill = $('#mm-progress-fill');
     if (step === 0){ counter.textContent = ''; fill.style.width = '0%'; }
-    else if (step >= 8){ counter.textContent = 'Your estimate'; fill.style.width = '100%'; }
-    else { counter.textContent = 'Question ' + step + ' of 7'; fill.style.width = (step/7*100) + '%'; }
+    else if (step >= STEP_RESULT){ counter.textContent = 'Your estimate'; fill.style.width = '100%'; }
+    else { counter.textContent = 'Question ' + step + ' of ' + TOTAL_Q; fill.style.width = (step/TOTAL_Q*100) + '%'; }
     try { root.scrollIntoView({behavior:'smooth', block:'start'}); } catch(e){}
   }
 
   /* ---------- Pricing engine ---------- */
+  function round50(n){ return Math.round(n / 50) * 50; }
+
   function priceIt(){
-    var base   = PACKAGES[state.prop].base;
-    var stdBed = PACKAGES[state.prop].stdBed;
-    var bedAdd = 100 * Math.max(0, state.bedrooms - stdBed);   /* bedrooms above the property standard */
-    var adj    = base + bedAdd + 100 * state.extras;           /* Adjusted Base = low end, always */
-    var atmo   = state.situation === 'atmo';
-    var musty  = state.situation === 'musty';
-    var gross  = musty ? 0 : (state.gross || 0);
+    /* No visible mould means there is nothing to count and nothing to treat
+       yet. Air sampling is the honest next step, not a treatment price. */
+    if (state.musty) return { showPrice:false, routing:'air_sampling', notes:['musty'] };
 
-    var out = { low:adj, high:null, routing:'standard', notes:[], showPrice:true };
+    var rooms = Math.min(Math.max(parseInt(state.rooms, 10) || 1, 1), MAX_ROOMS);
+    var mid   = FIRST_ROOM + EXTRA_ROOM * (rooms - 1);
 
-    /* Routing rule 1: more than 5 colonised rooms, no online price */
-    if (gross > 5){
-      out.showPrice = false;
-      out.routing = 'inspection_required';
-      return out;
-    }
-
-    var grossUplift = 0.2 * base * gross;                       /* 20% of the BASE PACKAGE PRICE per room */
-    var atmoUplift  = (atmo || musty) ? adj : 0;               /* doubler: high = 2 x Adjusted Base */
-    var uplift = Math.max(grossUplift, atmoUplift, 500);        /* never stack; $500 minimum spread */
-    var rawHigh = adj + uplift;
-    out.high = rawHigh;
-
-    /* Routing rule 2: atmospheric AND colonised in 3+ rooms */
-    if (atmo && gross >= 3){ out.routing = 'inspect_first'; out.notes.push('inspect_first'); }
-
-    /* Routing rule 2a: price cap $3,000 */
-    if (rawHigh >= 3000){
-      out.high = 3000;
-      out.notes.push('cap');
-      if (out.routing === 'standard') out.routing = 'cap_inspection_600';
-    }
-
-    /* Routing rule 3: musty, no visible mould */
-    if (musty){
-      out.notes.push('musty');
-      if (out.routing === 'standard') out.routing = 'potential_atmospheric';
-    }
-
-    return out;
+    return {
+      showPrice: true,
+      routing: 'standard',
+      notes: [],
+      rooms: rooms,
+      mid: mid,
+      low: Math.max(FLOOR, round50(mid * (1 - SPREAD))),
+      high: round50(mid * (1 + SPREAD))
+    };
   }
 
   /* ---------- Result rendering ---------- */
   function renderResult(){
     var r = priceIt();
     state.result = r;
-    var el = $('#mm-result');
-    var h = '';
+    /* h = the headline block, which sits ABOVE the quote request.
+       n = supporting notes, which sit BELOW it. Getting them to ask for an
+       exact quote matters more than the fogging and air-sampling asides. */
+    var h = '', n = '';
 
     if (!r.showPrice){
       h += '<span class="mm-result-tag mod">Our honest recommendation</span>';
-      h += '<h2 class="mm-result-title">This one needs a proper look first</h2>';
-      h += '<div class="mm-callout"><p class="mm-callout-label">Investigation &amp; Report, ' + money(300) + '</p><p>With mould in that many rooms, treatment is not the right first step. We recommend a thorough investigation into the cause of the mould and moisture, with a written report and recommendations. If treatment is possible, we will tell you. If it needs remediation, we will send a report with a scope of work and a quote. We are an IICRC certified firm and remediate to the S520 standard.</p></div>';
+      h += '<h2 class="mm-result-title">Let us find it before we treat it</h2>';
+      h += '<div class="mm-callout"><p class="mm-callout-label">Air sampling is the right first step</p><p>A musty smell with no visible mould usually means the mould is hidden, and there is nothing to put a treatment price on yet. Taking air samples and sending them to a NATA accredited lab tells us whether there is a problem, how bad it is and where to look. Once we know that, we can price the work properly. <a href="https://mouldmates.github.io/air-sampling-calculator/" style="color:var(--teal-bright);font-weight:600;text-decoration:none;">Try the air sampling calculator &rarr;</a></p></div>';
     } else {
-      var parts = [];
-      if (state.bedrooms) parts.push(state.bedrooms + ' bedroom' + (state.bedrooms>1?'s':''));
-      if (state.extras) parts.push(state.extras + ' extra room' + (state.extras>1?'s':''));
-      var desc = PACKAGES[state.prop].label + (parts.length ? ' with ' + parts.join(' and ') : '');
+      var desc = r.rooms + ' room' + (r.rooms > 1 ? 's' : '') + ' treated and fogged, including a report of findings.';
       h += '<span class="mm-result-tag">Your estimate</span>';
       h += '<h2 class="mm-result-title">Here is your treatment estimate</h2>';
       h += '<div class="mm-score"><span class="mm-score-label">Estimated range, incl. GST</span><span class="mm-score-value">' + money(r.low) + '</span><span class="mm-score-to">to</span><span class="mm-score-value">' + money(r.high) + '</span>';
-      h += '<span class="mm-score-note">' + desc + ': visible mould treatment and whole home fogging, including a report of findings.</span></div>';
+      h += '<span class="mm-score-note">' + desc + '</span></div>';
 
-      if (r.notes.indexOf('inspect_first') > -1){
-        h += '<div class="mm-callout"><p class="mm-callout-label">Best next step: inspect and report first</p><p>With mould through the whole home and three or more patches in several rooms, it would be best to inspect and report before treatment, as this job may need remediation. We will investigate the issue and, if possible, treat while we are there. If it needs remediation, we will discuss options with you and send a report with a scope of work and a quote.</p></div>';
-      }
-      if (r.notes.indexOf('cap') > -1 && r.notes.indexOf('inspect_first') === -1){
-        h += '<div class="mm-callout"><p class="mm-callout-label">A property this size may need an inspection first</p><p>For larger properties we may recommend an Investigation &amp; Report at ' + money(600) + ' before treatment can be confirmed.</p></div>';
-      }
+      n += '<div class="mm-callout"><p class="mm-callout-label">Want the whole home fogged?</p><p>Every room we treat is fogged as part of the process. We can also fog your whole home on request, at an estimated ' + money(FOG_PER_FLOOR) + ' per floor. Just ask us when we call.</p></div>';
     }
 
     if (state.leak === 'yes'){
-      h += '<div class="mm-callout"><p class="mm-callout-label">Mould from a leak</p><p>Treating mould that has come from a leak is likely a temporary fix, and the job will likely need remediation to address the water damage at the source. Treatment is still an option to help in the meantime while remediation plans are put in place. We will talk you through both when we call.</p></div>';
+      n += '<div class="mm-callout"><p class="mm-callout-label">Mould from a leak or a flood</p><p>Treating mould that has come from a leak or a flood is likely a temporary fix, and the job will likely need remediation to address the water damage at the source. That section may not be treatable at all until the cause is sorted, so we will want to investigate before locking anything in. Treatment is still an option to help in the meantime. We will talk you through both when we call.</p></div>';
     }
 
     if (state.travel){
-      h += '<div class="mm-callout"><p class="mm-callout-label">Travel</p><p>A travel charge applies for your area. We will confirm it when we call.</p></div>';
+      n += '<div class="mm-callout"><p class="mm-callout-label">Travel</p><p>A travel charge applies for your area. We will confirm it when we call.</p></div>';
     }
 
-    h += '<div class="mm-callout"><p class="mm-callout-label">Musty smells elsewhere?</p><p>Musty smells in other parts of your home but cannot see any mould? Taking air samples and sending them to a lab helps us find hidden mould. <a href="https://mouldmates.github.io/air-sampling-calculator/" style="color:var(--teal-bright);font-weight:600;text-decoration:none;">Try the air sampling calculator &rarr;</a></p></div>';
+    if (r.showPrice){
+      n += '<div class="mm-callout"><p class="mm-callout-label">Musty smells elsewhere?</p><p>Musty smells in other parts of your home but cannot see any mould? Taking air samples and sending them to a lab helps us find hidden mould. <a href="https://mouldmates.github.io/air-sampling-calculator/" style="color:var(--teal-bright);font-weight:600;text-decoration:none;">Try the air sampling calculator &rarr;</a></p></div>';
+    }
 
-    h += '<p class="mm-disclaimer">This is an estimate, not a quote. The range is usually accurate, but we need to see some photos and talk about the job to confirm the price. Mould is a climate problem, not a hygiene problem, and it is fixable.</p>';
+    h += '<p class="mm-disclaimer">This is an estimate, not a quote. It gives you a ballpark so you know roughly where you stand, and we confirm the exact price once we have seen some photos and talked about the job. Mould is a climate problem, not a hygiene problem, and it is fixable.</p>';
 
-    el.innerHTML = h;
-    show(8);
+    $('#mm-result').innerHTML = h;
+    $('#mm-result-notes').innerHTML = n;
+    show(STEP_RESULT);
   }
 
   /* ---------- Wiring ---------- */
   $('#mm-start').addEventListener('click', function(){ show(1); });
 
-  $all('[data-prop]').forEach(function(b){
+  /* Rooms affected, plus the "no visible mould" option, share one handler so
+     picking either one clears the other. */
+  $all('[data-rooms]').forEach(function(b){
     b.addEventListener('click', function(){
-      $all('[data-prop]').forEach(function(x){ x.classList.remove('selected'); });
+      $all('[data-rooms]').forEach(function(x){ x.classList.remove('selected'); });
       b.classList.add('selected');
-      state.prop = b.getAttribute('data-prop');
-      state.bedrooms = PACKAGES[state.prop].stdBed;             /* default bedrooms to the property standard */
-      $('#mm-bed-count').textContent = state.bedrooms;
+      var v = b.getAttribute('data-rooms');
+      state.musty = (v === 'musty');
+      state.rooms = state.musty ? null : parseInt(v, 10);
       setTimeout(function(){ show(2); }, 200);
-    });
-  });
-
-  $('#mm-bed-minus').addEventListener('click', function(){
-    state.bedrooms = Math.max(1, state.bedrooms - 1);
-    $('#mm-bed-count').textContent = state.bedrooms;
-  });
-  $('#mm-bed-plus').addEventListener('click', function(){
-    state.bedrooms = Math.min(8, state.bedrooms + 1);
-    $('#mm-bed-count').textContent = state.bedrooms;
-  });
-
-  $('#mm-minus').addEventListener('click', function(){
-    state.extras = Math.max(0, state.extras - 1);
-    $('#mm-extras-count').textContent = state.extras;
-  });
-  $('#mm-plus').addEventListener('click', function(){
-    state.extras = Math.min(8, state.extras + 1);
-    $('#mm-extras-count').textContent = state.extras;
-  });
-
-  $all('[data-sit]').forEach(function(b){
-    b.addEventListener('click', function(){
-      $all('[data-sit]').forEach(function(x){ x.classList.remove('selected'); });
-      b.classList.add('selected');
-      state.situation = b.getAttribute('data-sit');
-      if (state.situation === 'musty'){
-        state.gross = 0; visitedGross = false;
-        $('#mm-musty-note').style.display = 'block';
-        $('#mm-musty-continue').style.display = 'inline-flex';
-      } else {
-        $('#mm-musty-note').style.display = 'none';
-        $('#mm-musty-continue').style.display = 'none';
-        visitedGross = true;
-        setTimeout(function(){ show(5); }, 200);
-      }
-    });
-  });
-  $('#mm-musty-continue').addEventListener('click', function(){ show(6); });
-
-  $all('[data-gross]').forEach(function(b){
-    b.addEventListener('click', function(){
-      $all('[data-gross]').forEach(function(x){ x.classList.remove('selected'); });
-      b.classList.add('selected');
-      state.gross = parseInt(b.getAttribute('data-gross'), 10);
-      setTimeout(function(){ show(6); }, 200);
     });
   });
 
@@ -546,18 +428,12 @@
       $all('[data-leak]').forEach(function(x){ x.classList.remove('selected'); });
       b.classList.add('selected');
       state.leak = b.getAttribute('data-leak');
-      setTimeout(function(){ show(7); }, 200);
+      setTimeout(function(){ show(3); }, 200);
     });
-  });
-  $('#mm-back-from-leak').addEventListener('click', function(){
-    show(visitedGross ? 5 : 4);
   });
 
   $all('[data-goto]').forEach(function(b){
     b.addEventListener('click', function(){ show(parseInt(b.getAttribute('data-goto'), 10)); });
-  });
-  $('#mm-back-from-suburb').addEventListener('click', function(){
-    show(6);
   });
 
   $('#mm-see-estimate').addEventListener('click', function(){
@@ -657,15 +533,11 @@
       source: 'Treatment calculator',
       key: CALC_KEY,
       'Are you the owner, tenant or property manager?': $('#mm-role').value,
-      'Property type': PACKAGES[state.prop].label,
-      'Bedrooms': state.bedrooms,
-      'Extra rooms': state.extras,
-      'Rooms with visible mould': (state.gross !== null && state.gross > 5) ? '6+' : (state.gross || 0),
-      'Atmospheric / whole-home smell': state.situation === 'atmo' ? 'yes' : 'no',
-      'Musty smell only': state.situation === 'musty' ? 'yes' : 'no',
+      'Rooms affected': state.musty ? 'none visible' : (r.rooms || state.rooms || 0),
+      'Musty smell only': state.musty ? 'yes' : 'no',
       'Estimate low ($)': r.showPrice ? r.low : 0,
       'Estimate high ($)': r.showPrice ? r.high : 0,
-      'Confirmed leak': state.leak === 'yes' ? 'yes' : 'no',
+      'Leak or flood': state.leak === 'yes' ? 'yes' : 'no',
       'Outside travel zone': state.travel ? 'yes' : 'no',
       'Routing': r.routing || 'standard'
     };
@@ -718,16 +590,11 @@
   });
 
   $('#mm-restart').addEventListener('click', function(){
-    state = { prop:null, bedrooms:2, extras:0, situation:null, gross:null, leak:null, suburb:'', travel:false };
-    visitedGross = false;
+    state = { rooms:null, musty:false, leak:null, suburb:'', travel:false };
     $all('.selected').forEach(function(x){ x.classList.remove('selected'); });
-    $('#mm-bed-count').textContent = '2';
-    $('#mm-extras-count').textContent = '0';
     $('#mm-suburb').value = '';
     $('#mm-name').value = ''; $('#mm-phone').value = ''; $('#mm-email').value = ''; $('#mm-role').value = '';
     photos = []; renderThumbs();
-    $('#mm-musty-note').style.display = 'none';
-    $('#mm-musty-continue').style.display = 'none';
     $('#mm-form').style.display = 'none';
     $('#mm-success').style.display = 'none';
     var btn = $('#mm-submit'); btn.disabled = false; btn.innerHTML = 'Send my quote request <span class="mm-arrow">&rarr;</span>';
