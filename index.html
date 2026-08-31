@@ -348,15 +348,18 @@
      These figures are the rate card in SERVICE-TIERS-AND-CONDITION-2-BRIEF.md
      and in the app's rate_card table. If they change there, they change here.
      Full rules + stress test: TREATMENT-CALCULATOR-PRICING-RULES.md */
+  /* ⚠ Every figure here ends in a 9 on purpose (Travis, 31 Aug 2026): nothing is
+     to land on a round number. The premium extra room was already $399 and is
+     the one exception. Do not "tidy" these back up. */
   var TIERS = {
-    premium:  { label:'Premium',  min:850, room:399, adjoining:150 },
-    standard: { label:'Standard', min:750, room:250, adjoining:50  }
+    premium:  { label:'Premium',  min:849, room:399, adjoining:149 },
+    standard: { label:'Standard', min:749, room:249, adjoining:49  }
   };
   var MAX_ROOMS     = 15;
   var MAX_ADJOINING = 10;
   var TOTAL_Q    = 4;
   var STEP_RESULT = 5;
-  var FOG_PER_FLOOR = 400; /* whole-home fogging, mentioned only, never computed */
+  var FOG_PER_FLOOR = 399; /* whole-home fogging, mentioned only, never computed */
 
   /* Suburbs within roughly 30 km of Currumbin. Anything not matched gets the travel note. */
   var IN_ZONE = ['currumbin','currumbin waters','currumbin valley','palm beach','elanora','tugun','bilinga','kirra','coolangatta','tweed heads','tweed heads south','tweed heads west','banora point','terranora','bilambil','bilambil heights','piggabeen','cobaki','cobaki lakes','carool','tomewin','burleigh heads','burleigh waters','tallebudgera','tallebudgera valley','miami','mermaid beach','mermaid waters','nobby beach','robina','varsity lakes','reedy creek','mudgeeraba','bonogin','broadbeach','broadbeach waters','clear island waters','carrara','merrimac','worongary','gilston','highland park','nerang','advancetown','austinville','springbrook','neranwood','surfers paradise','main beach','benowa','bundall','ashmore','molendinar','southport','labrador','parkwood','arundel','chevron island','isle of capri','kingscliff','fingal head','chinderah','cudgen','kings forest','casuarina','salt village','cabarita beach','bogangar','tanglewood','hastings point','pottsville','duranbah','tumbulgum','condong','eviron','urliup','dulguigan','north tumbulgum','bungalora','eungella','murwillumbah','south murwillumbah'];
